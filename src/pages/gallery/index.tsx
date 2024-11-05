@@ -1,5 +1,10 @@
+import RootLayout from "@/app/layout";
 import { Gallery } from "@/components/gallery";
 
 export default function GalleryPage() {
-    return <Gallery />
+    return (
+        <RootLayout>
+            <Gallery />
+        </RootLayout>
+    )
 }

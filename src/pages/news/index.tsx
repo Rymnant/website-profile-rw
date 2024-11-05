@@ -1,5 +1,10 @@
+import RootLayout from "@/app/layout";
 import { News } from "@/components/news";
 
 export default function NewsPage() {
-    return <News />
+    return (
+        <RootLayout>
+            <News />
+        </RootLayout>
+    )
 }

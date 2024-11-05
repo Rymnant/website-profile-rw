@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 export function Hero() {
     return (
-        <section id="section-0" className="relative h-screen flex items-center justify-center">
+        <section className="relative h-screen flex items-center justify-center">
             <Image
                 src="/img/hero-background_2.png"
                 alt="Logo RW 06"

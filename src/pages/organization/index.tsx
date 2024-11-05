@@ -1,5 +1,10 @@
+import RootLayout from "@/app/layout";
 import { Organization } from "@/components/organization";
 
 export default function OrganizationPage() {
-    return <Organization />
+    return (
+        <RootLayout>
+            <Organization />
+        </RootLayout>
+    )
 }

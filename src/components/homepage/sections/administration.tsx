@@ -1,4 +1,4 @@
-import { POPULATION_STATS } from "@/app/lib/constants";
+import { POPULATION_STATS } from "@/lib/constants";
 
 export function Administration() {
     return (

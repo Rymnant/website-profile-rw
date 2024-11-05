@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import { ORGANIZATION_MEMBERS } from '@/app/lib/constants'
+import { ORGANIZATION_MEMBERS } from '@/lib/constants'
 
 export function Organization() {
     return (

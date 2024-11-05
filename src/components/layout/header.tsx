@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { NAV_ITEMS } from '@/app/lib/constants'
+import { NAV_ITEMS } from '@/lib/constants'
 
 export default function Header() {
 
@@ -31,9 +31,9 @@ export default function Header() {
                 </div>
                 <ul className="flex space-x-6">
                     {NAV_ITEMS.map((item, index) => (
-                        <li key={item}>
-                            <Link href={`#section-${index}`} className={`${isScrolled ? 'text-gray-800' : 'text-white'} hover:text-gray-300`}>
-                                {item}
+                        <li key={index}>
+                            <Link href={item.link} className={`${isScrolled ? 'text-gray-800' : 'text-white'} hover:text-gray-300`}>
+                                {item.label}
                             </Link>
                         </li>
                     ))}

@@ -1,8 +1,15 @@
 // Navigation items
 
-export const NAV_ITEMS = ['Beranda', 'Tentang Kami', 'Informasi', 'Berita', 'Hubungi Kami'];
+export const NAV_ITEMS = [
+    { label: 'Beranda', link: '/' },
+    { label: 'Tentang Kami', link: '/about' },
+    { label: 'Informasi', link: '/information' },
+    { label: 'Berita', link: '/news' },
+    { label: 'Galeri', link: '/gallery' },
+    { label: 'Hubungi Kami', link: '/contact' } 
+]
 
-// Administation data
+// Administration data
 
 export const POPULATION_STATS = [
     { label: 'Penduduk', value: 1137 },

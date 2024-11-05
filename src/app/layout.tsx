@@ -1,5 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import Header from '@/app/components/layout/header'
+import Footer from '@/app/components/layout/footer'
 
 export const metadata: Metadata = {
   title: 'RW06 Rejowinangun',
@@ -13,7 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="min-h-screen text-black">
+          <Header />
+            {children}        
+          <Footer />
+        </div>
+      </body>
     </html>
   )
 }

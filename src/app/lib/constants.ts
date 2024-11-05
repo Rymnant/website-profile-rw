@@ -1,9 +1,32 @@
-import ListMember from "../components/organization/listMember";
+// Navigation items
 
-export const organizationMembers = [
-    { name: "Alias", role: "Ketua RW", image: "/images/alias.jpg" },
-    { name: "Alias1", role: "Ketua RT 17", image: "/images/alias1.jpg" },
-    { name: "Alias2", role: "Ketua RT 18", image: "/images/alias2.jpg" },
-    { name: "Alias3", role: "Ketua RT 19", image: "/images/alias3.jpg" },
-    { name: "Alias4", role: "Ketua RT 20", image: "/images/alias4.jpg" },
-];
+export const NAV_ITEMS = ['Beranda', 'Tentang Kami', 'Informasi', 'Berita', 'Hubungi Kami'];
+
+// Administation data
+
+export const POPULATION_STATS = [
+    { label: 'Penduduk', value: 1137 },
+    { label: 'Kepala Keluarga', value: 297 },
+    { label: 'Laki-Laki', value: 593 },
+    { label: 'Perempuan', value: 544 },
+]
+
+// Gallery images
+
+export const GALLERY_IMAGES = [
+    { src: '/img/hero-background_1.png', alt: 'Kegiatan-1' },
+    { src: '/img/hero-background_1.png', alt: 'Kegiatan-2' },
+    { src: '/img/hero-background_1.png', alt: 'Kegiatan-3' },
+    { src: '/img/hero-background_1.png', alt: 'Kegiatan-4' },
+    { src: '/img/hero-background_1.png', alt: 'Kegiatan-5' },
+    { src: '/img/hero-background_1.png', alt: 'Kegiatan-6' }
+]
+
+// Organization members
+
+export const ORGANIZATION_MEMBERS = [
+    { name: 'Name_1', role: 'Role_1', image: '/icon/member.png' },
+    { name: 'Name_2', role: 'Role_2', image: '/icon/member.png' },
+    { name: 'Name_3', role: 'Role_3', image: '/icon/member.png' },
+    { name: 'Name_4', role: 'Role_4', image: '/icon/member.png' }
+]

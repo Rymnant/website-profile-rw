@@ -1,4 +1,4 @@
-import RootLayout from "@/app/layout";
+import RootLayout from "@/pages/layout";
 import { Gallery } from "@/components/gallery";
 
 export default function GalleryPage() {

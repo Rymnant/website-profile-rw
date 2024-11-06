@@ -7,10 +7,10 @@ import { MapPin, CheckCircle } from "lucide-react";
 //     loading: () => <div className="h-[300px] bg-muted rounded-lg" />
 // });
 
-export function About() {
+const About = () => {
     return (
         <main className="container mx-auto px-4 py-8 max-w-10xl">
-            <div className="mb-12 text-center">
+            <div className="mb-12 mt-12 text-left">
                 <h1 className="text-4xl font-bold mb-2">Profil</h1>
                 <p className="text-muted-foreground">Letak geografis serta visi dan misi</p>
             </div>
@@ -25,17 +25,13 @@ export function About() {
                 <CardContent className="grid md:grid-cols-2 gap-8">
                     <div className="space-y-4">
                         <p>
-                            Kawasan RW 12 terletak di Kelurahan Pegangasaan Dua, Kecamatan Kelapa
-                            Gading. Terbentang di lahan seluas 50 hektar, mulai dari blok NB hingga blok
-                            NI. Kawasan ini dibatasi oleh batas-batas geografis tertentu.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe totam repellendus dicta officiis dignissimos. Vitae earum consequatur quis ab asperiores ea sapiente, animi totam voluptatibus expedita dolores maxime soluta nobis?
                         </p>
                         <p>
-                            Di sisi Utara dibatasi oleh Jl. Nias Raya. Di sisi Timur dibatasi oleh Jl. Kelapa
-                            Lilin Timur dan Kali Betik. Di sisi Barat dibatasi oleh Jl. Raya Gading Indah.
+                            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus id adipisci sunt et nostrum harum. Pariatur nihil odit sapiente odio distinctio, mollitia cupiditate deleniti ipsum magni cum sint alias earum!
                         </p>
                         <p>
-                            Kawasan RW 12 merupakan kawasan hunian dengan jumlah RT (Rukun
-                            Tetangga) terbesar yaitu 31 RT.
+                            Kawasan RW 06 merupakan kawasan hunian dengan jumlah total 4 RT.
                         </p>
                     </div>
                     <div className="relative h-[300px] bg-muted rounded-lg overflow-hidden">
@@ -54,11 +50,11 @@ export function About() {
                         <ul className="space-y-4">
                             <li className="flex gap-2">
                                 <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                                <span>Menciptakan lingkungan yang sehat, hijau, aman, tertib, dan serai.</span>
+                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi minima consequuntur hic eligendi veniam, quas velit nulla laborum minus ullam necessitatibus itaque alias atque inventore laudantium nihil officiis, qui ab..</span>
                             </li>
                             <li className="flex gap-2">
                                 <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                                <span>Melakukan digitalisasi pelayanan kepada warga sebagai pilihan alternatif, seiring dengan perkembangan jaman.</span>
+                                <span>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cum excepturi harum, blanditiis doloribus, autem, accusantium et dicta omnis optio rerum exercitationem itaque porro. Magnam maxime nulla praesentium error qui beatae?</span>
                             </li>
                         </ul>
                     </div>
@@ -68,15 +64,15 @@ export function About() {
                         <ul className="space-y-4">
                             <li className="flex gap-2">
                                 <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                                <span>Pengelolaan kebersihan lingkungan secara mandiri yang dilakukan setiap hari.</span>
+                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. In perferendis suscipit optio excepturi odit, consequatur quos. Quidem dolorem ullam ad nostrum id, aliquam unde maxime, cum animi, rem dicta fugiat!</span>
                             </li>
                             <li className="flex gap-2">
                                 <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                                <span>Pemasangan CCTV di titik-titik strategis untuk memudahkan pemantauan keamanan wilayah.</span>
+                                <span>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ullam nesciunt sed voluptatibus fugiat atque, nam unde repellendus debitis ipsum placeat autem possimus odit voluptate nulla earum accusamus nemo quae quis..</span>
                             </li>
                             <li className="flex gap-2">
                                 <CheckCircle className="h-5 w-5 text-primary flex-shrink-0" />
-                                <span>Pengembangan aplikasi untuk memenuhi kebutuhan warga akan pelayanan dan informasi.</span>
+                                <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore voluptas eos inventore blanditiis quas, quaerat mollitia magni unde quo neque accusamus, qui ipsum nemo itaque illum deleniti odio fuga. Eius?</span>
                             </li>
                         </ul>
                     </div>
@@ -85,3 +81,5 @@ export function About() {
         </main>
     );
 }
+
+export default About;

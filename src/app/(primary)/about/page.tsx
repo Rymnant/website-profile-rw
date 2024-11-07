@@ -1,11 +1,6 @@
-import dynamic from "next/dynamic";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, CheckCircle } from "lucide-react";
-
-// const Map = dynamic(() => import('@/components/common/map'), { 
-//     ssr: false,
-//     loading: () => <div className="h-[300px] bg-muted rounded-lg" />
-// });
+import MapClient from '@/components/common/MapClient';
 
 const About = () => {
     return (
@@ -35,7 +30,7 @@ const About = () => {
                         </p>
                     </div>
                     <div className="relative h-[300px] bg-muted rounded-lg overflow-hidden">
-                        {/* <Map center={[-6.1544, 106.9136]} zoom={15} /> */}
+                        <MapClient center={[-7.8049487,110.3985003]} zoom={60} />
                     </div>
                 </CardContent>
             </Card>

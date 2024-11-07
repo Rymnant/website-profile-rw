@@ -1,39 +1,62 @@
-// Navigation items
+import { Article } from './types'
+import { getRandomInt, getRandomItem } from '@/lib/utils'
 
+const GALLERY_PER_PAGE = 6;
+const ORGANIZATION_MEMBER_PER_PAGE = 8;
+const ARTICLES_PER_PAGE = 500; 
+
+
+// Generate random navigation items
 export const NAV_ITEMS = [
     { label: 'Beranda', link: '/' },
     { label: 'Tentang Kami', link: '/about' },
     { label: 'Informasi', link: '/information' },
     { label: 'Berita', link: '/news' },
     { label: 'Galeri', link: '/gallery' },
-    { label: 'Hubungi Kami', link: '/contact' } 
-]
+    { label: 'Hubungi Kami', link: '/contact' }
+];
 
-// Administration data
+// Generate random population stats
+export const POPULATION_STATS = () => [
+    { label: 'Penduduk', value: getRandomInt(1000, 2000) },
+    { label: 'Kepala Keluarga', value: getRandomInt(200, 500) },
+    { label: 'Laki-Laki', value: getRandomInt(500, 1000) },
+    { label: 'Perempuan', value: getRandomInt(500, 1000) }
+];
 
-export const POPULATION_STATS = [
-    { label: 'Penduduk', value: 1137 },
-    { label: 'Kepala Keluarga', value: 297 },
-    { label: 'Laki-Laki', value: 593 },
-    { label: 'Perempuan', value: 544 },
-]
+// Generate random gallery images
+export const GALLERY_IMAGES = () => {
+    const images = [];
+    for (let i = 1; i <= GALLERY_PER_PAGE; i++) {
+        images.push({ src: `/img/hero-background_1.png`, alt: `Kegiatan-${i}` });
+    }
+    return images;
+};
 
-// Gallery images
+// Generate random organization members
+export const ORGANIZATION_MEMBERS = () => {
+    const roles = ['Role_1', 'Role_2', 'Role_3', 'Role_4'];
+    const members = [];
+    for (let i = 1; i <= ORGANIZATION_MEMBER_PER_PAGE; i++) {
+        members.push({ name: `Name_${i}`, role: getRandomItem(roles), image: '/icon/member.png' });
+    }
+    return members;
+};
 
-export const GALLERY_IMAGES = [
-    { src: '/img/hero-background_1.png', alt: 'Kegiatan-1' },
-    { src: '/img/hero-background_1.png', alt: 'Kegiatan-2' },
-    { src: '/img/hero-background_1.png', alt: 'Kegiatan-3' },
-    { src: '/img/hero-background_1.png', alt: 'Kegiatan-4' },
-    { src: '/img/hero-background_1.png', alt: 'Kegiatan-5' },
-    { src: '/img/hero-background_1.png', alt: 'Kegiatan-6' }
-]
-
-// Organization members
-
-export const ORGANIZATION_MEMBERS = [
-    { name: 'Name_1', role: 'Role_1', image: '/icon/member.png' },
-    { name: 'Name_2', role: 'Role_2', image: '/icon/member.png' },
-    { name: 'Name_3', role: 'Role_3', image: '/icon/member.png' },
-    { name: 'Name_4', role: 'Role_4', image: '/icon/member.png' }
-]
+// Generate random articles
+export const ARTICLES = (): Article[] => {
+    const articles = [];
+    for (let i = 1; i <= ARTICLES_PER_PAGE; i++) {
+        articles.push({
+            id: `${i}`,
+            title: `Article ${i}`,
+            excerpt: `This is article number ${i}.`,
+            imageUrl: `/img/hero-background_1.png`,
+            viewCount: getRandomInt(100, 1000),
+            administrator: `Admin ${i}`,
+            date: `2023-0${i}-01`,
+            slug: `article-${i}`
+        });
+    }
+    return articles;
+};

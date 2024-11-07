@@ -8,13 +8,13 @@ const HomePage = () => {
             {/* Hero Section */}
             <section className="relative h-screen flex items-center justify-center">
                 <Image
-                    src="/img/hero-background_2.png"
+                    src="/img/hero-background_1.png"
                     alt="Logo RW 06"
                     layout="fill"
                     objectFit="cover"
                     quality={100}
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-50" />
+                <div className="absolute inset-0 bg-black bg-opacity-10" />
                 <div className="relative z-1 text-center text-white px-4">
                     <h1 className="text-4xl md:text-5xl font-bold mb-4">Selamat Datang</h1>
                     <p className="text-xl md:text-2xl max-w-3xl mx-auto">
@@ -57,7 +57,7 @@ const HomePage = () => {
                     <h2 className="text-4xl font-bold text-red-600 mb-2">Struktur Organisasi</h2>
                     <p className="text-xl mb-8">Struktur Organisasi RW06 Rejowinangun</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        {ORGANIZATION_MEMBERS.map((member, index) => (
+                        {ORGANIZATION_MEMBERS().map((member, index) => (
                             <div key={index} className="bg-red-600 rounded-lg overflow-hidden shadow-lg">
                                 <Image
                                     src={member.image}
@@ -92,7 +92,7 @@ const HomePage = () => {
                         Sistem digital yang berfungsi mempermudah pengelolaan data dan informasi terkait dengan kependudukan dan pendayagunaannya untuk pelayanan publik yang efektif dan efisien
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-                        {POPULATION_STATS.map((stat, index) => (
+                        {POPULATION_STATS().map((stat, index) => (
                             <div key={index} className="flex">
                                 <div className="w-1/2 bg-red-500 text-white p-4 flex items-center justify-center text-3xl font-bold">
                                     {stat.value}
@@ -112,7 +112,7 @@ const HomePage = () => {
                     <h2 className="text-4xl font-bold text-red-600 mb-2">GALERI DESA</h2>
                     <p className="text-xl mb-8">Menampilkan kegiatan-kegiatan yang berlangsung di RW06</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        {GALLERY_IMAGES.map((image, index) => (
+                        {GALLERY_IMAGES().map((image, index) => (
                             <div key={index} className="relative h-64 overflow-hidden rounded-lg">
                                 <Image
                                     src={image.src}

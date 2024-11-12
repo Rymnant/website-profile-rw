@@ -1,12 +1,6 @@
-import { Article } from './types'
-import { getRandomInt, getRandomItem } from '@/lib/utils'
+// Description: The file contains the constants that are used in the website.
 
-const GALLERY_PER_PAGE = 6;
-const ORGANIZATION_MEMBER_PER_PAGE = 8;
-const ARTICLES_PER_PAGE = 500; 
-
-
-// Generate random navigation items
+// Define the navigation items
 export const NAV_ITEMS = [
     { label: 'Beranda', link: '/' },
     { label: 'Tentang Kami', link: '/about' },
@@ -16,47 +10,110 @@ export const NAV_ITEMS = [
     { label: 'Hubungi Kami', link: '/contact' }
 ];
 
-// Generate random population stats
-export const POPULATION_STATS = () => [
-    { label: 'Penduduk', value: getRandomInt(1000, 2000) },
-    { label: 'Kepala Keluarga', value: getRandomInt(200, 500) },
-    { label: 'Laki-Laki', value: getRandomInt(500, 1000) },
-    { label: 'Perempuan', value: getRandomInt(500, 1000) }
+// Define the hero section props
+export const HERO_PROPS = [{
+    title: 'Selamat Datang',
+    subtitle: 'Di website resmi RW06 Rejowinangun',
+    tagline: 'Website ini berisi informasi seputar RW06 Rejowinangun',
+    buttonText: 'Tentang Kami',
+    buttonHref: '/about',
+}
 ];
 
-// Generate random gallery images
-export const GALLERY_IMAGES = () => {
-    const images = [];
-    for (let i = 1; i <= GALLERY_PER_PAGE; i++) {
-        images.push({ src: `/img/hero-background_1.png`, alt: `Kegiatan-${i}` });
-    }
-    return images;
-};
+// Define the information section props
+export const INFORMATION_PROPS = [
+    { title: 'Informasi', description: 'Informasi seputar RW06 Rejowinangun', href: '/information' },
+    { title: 'UMKM', description: 'Daftar UMKM di RW06 Rejowinangun', href: '/umkm' },
+    { title: 'Galeri', description: 'Galeri foto RW06 Rejowinangun', href: '/gallery' },
+    { title: 'Hubungi Kami', description: 'Hubungi kami untuk informasi lebih lanjut', href: '/contact' },
+];
 
-// Generate random organization members
-export const ORGANIZATION_MEMBERS = () => {
-    const roles = ['Role_1', 'Role_2', 'Role_3', 'Role_4'];
-    const members = [];
-    for (let i = 1; i <= ORGANIZATION_MEMBER_PER_PAGE; i++) {
-        members.push({ name: `Name_${i}`, role: getRandomItem(roles), image: '/icon/member.png' });
+// Define the news item props
+export const NEWS_PROPS = [
+    {
+        id: '1',
+        date: '2021-10-01',
+        title: 'Pembangunan Pos Kamling',
+        excerpt: 'Pembangunan pos kamling di RW06 Rejowinangun telah selesai dilakukan',
+        imageUrl: '/img/hero-background_1.png',
+        href: '/news/1'
+    },
+    {
+        id: '2',
+        date: '2021-10-02',
+        title: 'Pengumuman PPKM',
+        excerpt: 'Pengumuman terkait PPKM di RW06 Rejowinangun',
+        imageUrl: '/img/hero-background_1.png',
+        href: '/news/2'
+    },
+    {
+        id: '3',
+        date: '2021-10-03',
+        title: 'Pembagian Sembako',
+        excerpt: 'Pembagian sembako di RW06 Rejowinangun telah selesai dilakukan',
+        imageUrl: '/img/hero-background_1.png',
+        href: '/news/3'
+    },
+    {
+        id: '4',
+        date: '2021-10-04',
+        title: 'Pembangunan Jalan',
+        excerpt: 'Pembangunan jalan di RW06 Rejowinangun telah selesai dilakukan',
+        imageUrl: '/img/hero-background_1.png',
+        href: '/news/4'
+    },
+    {
+        id: '5',
+        date: '2021-10-05',
+        title: 'Pengumuman Banjir',
+        excerpt: 'Pengumuman terkait siaga banjir di RW06 Rejowinangun',
+        imageUrl: '/img/hero-background_1.png',
+        href: '/news/5'
+    },
+    {
+        id: '6',
+        date: '2021-10-06',
+        title: 'Pembangunan Taman',
+        excerpt: 'Pembangunan taman di RW06 Rejowinangun telah selesai dilakukan',
+        imageUrl: '/img/hero-background_1.png',
+        href: '/news/6'
     }
-    return members;
-};
+];
 
-// Generate random articles
-export const ARTICLES = (): Article[] => {
-    const articles = [];
-    for (let i = 1; i <= ARTICLES_PER_PAGE; i++) {
-        articles.push({
-            id: `${i}`,
-            title: `Article ${i}`,
-            excerpt: `This is article number ${i}.`,
-            imageUrl: `/img/hero-background_1.png`,
-            viewCount: getRandomInt(100, 1000),
-            administrator: `Admin ${i}`,
-            date: `2023-0${i}-01`,
-            slug: `article-${i}`
-        });
+// Define the footer props
+export const FOOTER_PROPS = [
+    {
+        title: "TENTANG KAMI",
+        links: [
+            { label: "Profil", href: "#" },
+            { label: "Struktur RW", href: "#" },
+            { label: "Pengurus RT", href: "#" },
+            { label: "Berita", href: "#" },
+        ]
+    },
+    {
+        title: "LAYANAN",
+        links: [
+            { label: "Administrasi Kependudukan", href: "#" },
+            { label: "Keamanan Wilayah", href: "#" },
+            { label: "Kebersihan Lingkungan", href: "#" },
+        ]
+    },
+    {
+        title: "INFORMASI",
+        links: [
+            { label: "Galeri", href: "#" },
+            { label: "Statistik", href: "#" },
+            { label: "Fasilitas", href: "#" },
+            { label: "Siaga Banjir", href: "#" },
+        ]
+    },
+    {
+        title: "LAINNYA",
+        links: [
+            { label: "Hubungi Kami", href: "#" },
+            { label: "Unduh Aplikasi", href: "#" },
+            { label: "Kebijakan Privasi", href: "#" },
+        ]
     }
-    return articles;
-};
+];

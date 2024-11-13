@@ -1,13 +1,29 @@
+import { HeaderNavItem } from '@/lib/types';
+
 // Description: The file contains the constants that are used in the website.
 
 // Define the navigation items
-export const NAV_ITEMS = [
+export const HEADER_NAV_ITEMS: HeaderNavItem[] = [
     { label: 'Beranda', link: '/' },
-    { label: 'Tentang Kami', link: '/about' },
-    { label: 'Informasi', link: '/information' },
+    {
+        label: 'Tentang Kami',
+        dropdown: [
+            { label: 'Profil', link: '/about', description: 'Visi misi serta informasi sekilas RW 06' },
+            { label: 'Struktur Organisasi', link: '/struktur-organisasi', description: 'Struktur organisasi RW 06' },
+        ]
+    },
+    {
+        label: 'Belanja',
+        dropdown: [
+            { label: 'UMKM RT 17', link: '/umkm/rt-17', description: 'Daftar UMKM di RT 17' },
+            { label: 'UMKM RT 18', link: '/umkm/rt-18', description: 'Daftar UMKM di RT 18' },
+            { label: 'UMKM RT 19', link: '/umkm/rt-19', description: 'Daftar UMKM di RT 19' },
+            { label: 'UMKM RT 20', link: '/umkm/rt-20', description: 'Daftar UMKM di RT 20' }
+        ]
+    },
     { label: 'Berita', link: '/news' },
     { label: 'Galeri', link: '/gallery' },
-    { label: 'Hubungi Kami', link: '/contact' }
+    { label: 'Hubungi Kami', link: '/contact' },
 ];
 
 // Define the hero section props
@@ -86,9 +102,9 @@ export const MAP_STYLE_URL = 'https://api.maptiler.com/maps/outdoor/style.json?k
 export const REJOWINANGUN_COORDINATES: [number, number] = [110.4621, -7.8112]
 
 export const MAP_CONFIG = {
-  initialZoom: 14,
-  maxZoom: 18,
-  minZoom: 10,
+    initialZoom: 14,
+    maxZoom: 18,
+    minZoom: 10,
 }
 
 // Define the footer props

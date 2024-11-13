@@ -149,7 +149,7 @@ export default function HomePage() {
                     <h2 className="mb-2 text-xl sm:text-2xl font-bold">Berita</h2>
                     <p className="text-gray-500 dark:text-gray-400 mb-10">
                         Berita terbaru seputar RW06 Rejowinangun
-                    </p>
+                    </p> 
                     <div className="relative">
                         <div
                             ref={scrollContainerRef}

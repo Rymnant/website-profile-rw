@@ -8,16 +8,22 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+// Helper function to create marker element
+function createMarkerElement(): HTMLDivElement {
+  const el = document.createElement('div')
+  el.className = 'marker'
+  el.style.width = '24px'
+  el.style.height = '24px'
+  el.style.backgroundImage = 'url(/marker-icon.png)'
+  el.style.backgroundSize = 'cover'
+  el.style.cursor = 'pointer'
+  return el
+}
+
 // Create map markers
 export function createMapMarkers(map: maplibregl.Map, markers: MapMarker[]): void {
   markers.forEach((marker) => {
-    const el = document.createElement('div')
-    el.className = 'marker'
-    el.style.width = '24px'
-    el.style.height = '24px'
-    el.style.backgroundImage = 'url(/marker-icon.png)'
-    el.style.backgroundSize = 'cover'
-    el.style.cursor = 'pointer'
+    const el = createMarkerElement()
 
     new maplibregl.Marker(el)
       .setLngLat([marker.longitude, marker.latitude])

@@ -1,10 +1,17 @@
 // Definition of types used in the website-profile-rw project
 
 // Define the navigation items
-export interface NavItem {
-  label: string
-  link: string
-}
+export type NavItem = {
+  label: string;
+  link: string;
+  description?: string;
+};
+
+export type HeaderNavItem = {
+  label: string;
+  link?: string;
+  dropdown?: NavItem[];
+};
 
 // Define the hero section props
 export interface HeroSectionProps {

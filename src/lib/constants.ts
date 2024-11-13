@@ -80,23 +80,25 @@ export const NEWS_PROPS = [
     }
 ];
 
+// Define the map props
+export const MAP_STYLE_URL = 'https://api.maptiler.com/maps/outdoor/style.json?key=EEognQIWz4TmyLwchUwd'
+
+export const REJOWINANGUN_COORDINATES: [number, number] = [110.4621, -7.8112]
+
+export const MAP_CONFIG = {
+  initialZoom: 14,
+  maxZoom: 18,
+  minZoom: 10,
+}
+
 // Define the footer props
 export const FOOTER_PROPS = [
     {
         title: "TENTANG KAMI",
         links: [
             { label: "Profil", href: "#" },
-            { label: "Struktur RW", href: "#" },
-            { label: "Pengurus RT", href: "#" },
+            { label: "Struktur Organisasi", href: "#" },
             { label: "Berita", href: "#" },
-        ]
-    },
-    {
-        title: "LAYANAN",
-        links: [
-            { label: "Administrasi Kependudukan", href: "#" },
-            { label: "Keamanan Wilayah", href: "#" },
-            { label: "Kebersihan Lingkungan", href: "#" },
         ]
     },
     {
@@ -104,16 +106,13 @@ export const FOOTER_PROPS = [
         links: [
             { label: "Galeri", href: "#" },
             { label: "Statistik", href: "#" },
-            { label: "Fasilitas", href: "#" },
-            { label: "Siaga Banjir", href: "#" },
+            { label: "UMKM", href: "#" },
         ]
     },
     {
         title: "LAINNYA",
         links: [
             { label: "Hubungi Kami", href: "#" },
-            { label: "Unduh Aplikasi", href: "#" },
-            { label: "Kebijakan Privasi", href: "#" },
         ]
     }
 ];

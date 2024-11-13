@@ -23,15 +23,18 @@ export interface InformationSectionProps {
   href: string
 }
 
-// Define the footer props
-export interface FooterLink {
-  label: string
-  href: string
+// Define the map props
+export interface MapMarker {
+  id: number
+  longitude: number
+  latitude: number
+  title: string
 }
 
-export interface FooterSection {
-  title: string
-  links: FooterLink[]
+export interface MapConfig {
+  style: string
+  center: [number, number]
+  zoom: number
 }
 
 // Define the news item props
@@ -42,4 +45,15 @@ export interface NewsItem {
   excerpt: string
   imageUrl: string
   href: string
+}
+
+// Define the footer props
+export interface FooterLink {
+  label: string
+  href: string
+}
+
+export interface FooterSection {
+  title: string
+  links: FooterLink[]
 }

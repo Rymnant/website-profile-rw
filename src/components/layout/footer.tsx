@@ -26,6 +26,14 @@ export default function Footer() {
         <footer className="w-full bg-white dark:bg-gray-900 pt-12 pb-4">
             <div className="container mx-auto px-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div className="space-y-4">
+                        <h3 className='font-bold text-sm'>RW 06 KELURAHAN REJOWINANGUN</h3>
+                        <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200">
+                            <li>Jl. Nyi Adi Sari No.754, Rejowinangun</li>
+                            <li>Kec. Kotagede, Kota Yogyakarta</li>
+                            <li>Daerah Istimewa Yogyakarta 55171</li>      
+                        </ul>
+                    </div>
                     {/* Navigation Sections */}
                     {FOOTER_PROPS.map((section) => (
                         <div key={section.title} className="space-y-4">
@@ -68,7 +76,7 @@ export default function Footer() {
 
                 {/* Copyright */}
                 <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
-                    © 2024 Sekretariat RW 12 Pegangsaan Dua
+                    © 2024 KKN UAD TEMATIK MBKM 93 I.A.2
                 </div>
             </div>
 

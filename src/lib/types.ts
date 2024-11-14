@@ -30,20 +30,6 @@ export interface InformationSectionProps {
   href: string
 }
 
-// Define the map props
-export interface MapMarker {
-  id: number
-  longitude: number
-  latitude: number
-  title: string
-}
-
-export interface MapConfig {
-  style: string
-  center: [number, number]
-  zoom: number
-}
-
 // Define the news item props
 export interface NewsItem {
   id: string

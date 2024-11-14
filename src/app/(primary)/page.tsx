@@ -2,17 +2,11 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { useRef, useState, useEffect } from "react"
-import maplibregl from 'maplibre-gl'
-import 'maplibre-gl/dist/maplibre-gl.css'
+import { useRef } from "react"
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { MapMarker } from '@/lib/types'
-import { createMapMarkers } from '@/lib/utils'
-import { HERO_PROPS, INFORMATION_PROPS, NEWS_PROPS, MAP_STYLE_URL, REJOWINANGUN_COORDINATES } from "@/lib/constants"
+import { HERO_PROPS, INFORMATION_PROPS, NEWS_PROPS,} from "@/lib/constants"
 
 export default function HomePage() {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -28,35 +22,6 @@ export default function HomePage() {
             })
         }
     }
-
-    const mapContainer = useRef<HTMLDivElement>(null)
-    const map = useRef<maplibregl.Map | null>(null)
-
-    // Sample markers data
-    const markers: MapMarker[] = [
-        { id: 1, longitude: 110.4521, latitude: -7.8012, title: 'Point 1' },
-        { id: 2, longitude: 110.4621, latitude: -7.8112, title: 'Point 2' },
-        { id: 3, longitude: 110.4721, latitude: -7.8212, title: 'Point 3' },
-    ]
-
-    useEffect(() => {
-        if (map.current || !mapContainer.current) return
-
-        map.current = new maplibregl.Map({
-            container: mapContainer.current,
-            style: MAP_STYLE_URL,
-            center: REJOWINANGUN_COORDINATES,
-            zoom: 14,
-        })
-
-        map.current.addControl(new maplibregl.NavigationControl())
-
-        createMapMarkers(map.current, markers)
-
-        return () => {
-            map.current?.remove()
-        }
-    }, [])
 
     return (
         <main className="overflow-x-hidden">
@@ -118,27 +83,6 @@ export default function HomePage() {
                                 </Link>
                             ))}
                         </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* Map Section */}
-            <section className="w-full flex justify-center">
-                <div className="container px-4 py-12 sm:py-24 w-full md:px-6 max-w-6xl">
-                    <div className="space-y-4">
-                        <div className="max-w-6xl w-full px-4 sm:px-6">
-                            <h2 className="mb-2 text-xl sm:text-2xl font-bold">Peta Desa</h2>
-                            <p className="text-gray-500 dark:text-gray-400 mb-10">
-                                Menampilkan Peta Desa Rejowinangun
-                            </p>
-                        </div>
-
-                        <Card className="p-4">
-                            <div
-                                ref={mapContainer}
-                                className="w-full h-[400px] sm:h-[600px] rounded-lg overflow-hidden"
-                            />
-                        </Card>
                     </div>
                 </div>
             </section>

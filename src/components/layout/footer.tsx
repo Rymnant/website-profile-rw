@@ -72,25 +72,27 @@ export default function Footer() {
 
                 {/* Desktop View */}
                 <div className="hidden md:block">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                        <Address />
-                        {FOOTER_PROPS.map((section) => (
-                            <div key={section.title} className="space-y-4">
-                                <h3 className="font-bold text-sm">{section.title}</h3>
-                                <ul className="space-y-2">
-                                    {section.links.map((link) => (
-                                        <li key={link.label}>
-                                            <Link
-                                                href={link.href}
-                                                className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
-                                            >
-                                                {link.label}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ))}
+                    <div className="flex justify-center items-center">
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-20">
+                            <Address />
+                            {FOOTER_PROPS.map((section) => (
+                                <div key={section.title} className="space-y-4">
+                                    <h3 className="font-bold text-sm">{section.title}</h3>
+                                    <ul className="space-y-2">
+                                        {section.links.map((link) => (
+                                            <li key={link.label}>
+                                                <Link
+                                                    href={link.href}
+                                                    className="text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
+                                                >
+                                                    {link.label}
+                                                </Link>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
                     </div>
 
                     <div className="mt-12 py-4 border-t border-gray-200 dark:border-gray-700 flex justify-center items-center">

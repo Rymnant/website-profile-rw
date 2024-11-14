@@ -96,17 +96,6 @@ export const NEWS_PROPS = [
     }
 ];
 
-// Define the map props
-export const MAP_STYLE_URL = 'https://api.maptiler.com/maps/outdoor/style.json?key=EEognQIWz4TmyLwchUwd'
-
-export const REJOWINANGUN_COORDINATES: [number, number] = [110.4621, -7.8112]
-
-export const MAP_CONFIG = {
-    initialZoom: 14,
-    maxZoom: 18,
-    minZoom: 10,
-}
-
 // Define the footer props
 export const FOOTER_PROPS = [
     {

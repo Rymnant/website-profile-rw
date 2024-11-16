@@ -9,7 +9,7 @@ export const HEADER_NAV_ITEMS: HeaderNavItem[] = [
         label: 'Tentang Kami',
         dropdown: [
             { label: 'Profil', link: '/about', description: 'Visi misi serta informasi sekilas RW 06' },
-            { label: 'Struktur Organisasi', link: '/struktur-organisasi', description: 'Struktur organisasi RW 06' },
+            { label: 'Struktur Organisasi', link: '/organization', description: 'Struktur organisasi RW 06' },
         ]
     },
     {

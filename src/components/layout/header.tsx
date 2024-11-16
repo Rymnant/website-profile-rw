@@ -26,7 +26,8 @@ export default function Header() {
                     <Image src="/icon/icon-transformed.png" alt="RW 012 Logo" width={150} height={50} className="h-12 w-auto" />
                 </Link>
 
-                <nav className="hidden md:flex space-x-6">
+                {/* Desktop Navigation */}
+                <nav className="hidden md:flex space-x-6 ml-auto">
                     {HEADER_NAV_ITEMS.map((item) => (
                         item.dropdown ? (
                             <div key={item.label} className="relative group">
@@ -42,6 +43,9 @@ export default function Header() {
                                                         {subItem.label === 'Profil' && <Clock className="h-5 w-5 text-gray-600" />}
                                                         {subItem.label === 'Struktur Organisasi' && <GitBranch className="h-5 w-5 text-gray-600" />}
                                                         {subItem.label === 'UMKM RT 17' && <Users className="h-5 w-5 text-gray-600" />}
+                                                        {subItem.label === 'UMKM RT 18' && <Users className="h-5 w-5 text-gray-600" />}
+                                                        {subItem.label === 'UMKM RT 19' && <Users className="h-5 w-5 text-gray-600" />}
+                                                        {subItem.label === 'UMKM RT 20' && <Users className="h-5 w-5 text-gray-600" />}
                                                     </div>
                                                     <div className="ml-4">
                                                         <p className="text-sm font-medium text-gray-900">{subItem.label}</p>
@@ -71,6 +75,7 @@ export default function Header() {
                 </div>
             </div>
 
+            {/* Mobile Navigation */}
             {mobileMenuOpen && (
                 <div className="md:hidden">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -94,6 +99,9 @@ export default function Header() {
                                                             {subItem.label === 'Profil' && <Clock className="h-5 w-5 mr-5 text-gray-600" />}
                                                             {subItem.label === 'Struktur Organisasi' && <GitBranch className="h-5 w-5 mr-5 text-gray-600" />}
                                                             {subItem.label === 'UMKM RT 17' && <Users className="h-5 w-5 mr-5 text-gray-600" />}
+                                                            {subItem.label === 'UMKM RT 18' && <Users className="h-5 w-5 mr-5 text-gray-600" />}
+                                                            {subItem.label === 'UMKM RT 19' && <Users className="h-5 w-5 mr-5 text-gray-600" />}
+                                                            {subItem.label === 'UMKM RT 20' && <Users className="h-5 w-5 mr-5 text-gray-600" />}
                                                             <div>
                                                                 <div className="font-medium">{subItem.label}</div>
                                                                 {subItem.description && <div className="text-sm text-gray-500">{subItem.description}</div>}

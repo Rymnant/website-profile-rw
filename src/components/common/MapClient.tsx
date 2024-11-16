@@ -26,5 +26,5 @@ export default function MapClient({ center, zoom }: MapClientProps) {
         }
     }, [center, zoom])
 
-    return <div id="map" className="h-[300px] w-full rounded-lg" />
+    return <div id="map" className="h-[300px] w-full rounded-lg z-0" />
 }

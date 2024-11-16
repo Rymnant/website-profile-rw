@@ -1,16 +1,154 @@
-const Contact = () => {
+'use client'
+
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import * as z from "zod"
+import { Button } from "@/components/ui/button"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { toast } from "@/hooks/use-toast"
+
+const formSchema = z.object({
+    name: z.string().min(2, {
+        message: "Nama harus minimal 2 karakter.",
+    }),
+    subject: z.string().min(2, {
+        message: "Perihal harus minimal 2 karakter.",
+    }),
+    message: z.string().min(10, {
+        message: "Pesan harus minimal 10 karakter.",
+    }),
+    contactMethod: z.enum(["email", "whatsapp"], {
+        required_error: "Silakan pilih metode kontak.",
+    }),
+})
+
+type FormValues = z.infer<typeof formSchema>
+
+export default function Component() {
+    const form = useForm<FormValues>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            name: "",
+            subject: "",
+            message: "",
+        },
+    })
+
+    function onSubmit(values: FormValues) {
+        toast({
+            title: "Form berhasil dikirim",
+            description: "Terima kasih telah menghubungi kami.",
+        })
+        console.log(values)
+    }
+
     return (
-        <main>
-            <section className="relative h-screen flex items-center justify-center">
-                <div className="relative z-1 text-center text-black px-4">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-4">Hello from Contact Pages</h1>
-                    <p className="text-xl md:text-2xl max-w-3xl mx-auto">
-                        This is the contact page.
-                    </p>
-                </div>
+        <main className="container mx-auto px-4 py-8 max-w-10xl">
+            <div className="mb-12 mt-12 text-left">
+                <h1 className="text-4xl font-bold mb-2">Hubungi Kami</h1>
+                <p className="text-muted-foreground">Hubungi kami jika Anda memiliki pertanyaan, saran dan kritik untuk RW 6 Rejowinangun</p>
+            </div>
+            <section className="max-w-2xl mx-auto p-4 md:p-6 lg:p-8">
+                <Form {...form}>
+                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                        <FormField
+                            control={form.control}
+                            name="name"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Nama Anda <span className="text-red-500">*</span>
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Masukkan nama Anda" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="subject"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Perihal <span className="text-red-500">*</span>
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="Isi perihal" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="message"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>
+                                        Pesan Anda <span className="text-red-500">*</span>
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Textarea
+                                            placeholder="Masukkan pesan Anda secara detail dan jelas untuk memudahkan kami dalam menjawab pertanyaan Anda."
+                                            className="min-h-[120px]"
+                                            {...field}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <FormField
+                            control={form.control}
+                            name="contactMethod"
+                            render={({ field }) => (
+                                <FormItem className="space-y-3">
+                                    <FormLabel>
+                                        Bagaimana Anda ingin dihubungi? <span className="text-red-500">*</span>
+                                    </FormLabel>
+                                    <FormControl>
+                                        <RadioGroup
+                                            onValueChange={field.onChange}
+                                            defaultValue={field.value}
+                                            className="flex flex-col space-y-1 sm:flex-row sm:space-x-4 sm:space-y-0"
+                                        >
+                                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                                <FormControl>
+                                                    <RadioGroupItem value="email" />
+                                                </FormControl>
+                                                <FormLabel className="font-normal cursor-pointer">
+                                                    Melalui email
+                                                </FormLabel>
+                                            </FormItem>
+                                            <FormItem className="flex items-center space-x-3 space-y-0">
+                                                <FormControl>
+                                                    <RadioGroupItem value="whatsapp" />
+                                                </FormControl>
+                                                <FormLabel className="font-normal cursor-pointer">
+                                                    Melalui whatsapp
+                                                </FormLabel>
+                                            </FormItem>
+                                        </RadioGroup>
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+
+                        <Button type="submit" className="w-full bg-[#3498db] hover:bg-[#2980b9]">
+                            Kirim
+                        </Button>
+                    </form>
+                </Form>
             </section>
         </main>
     )
 }
-
-export default Contact;

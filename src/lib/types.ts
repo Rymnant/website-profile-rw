@@ -40,6 +40,19 @@ export interface NewsItem {
   href: string
 }
 
+// Tipe data untuk artikel berita
+export type NewsArticle = {
+  id: string
+  title: string
+  description: string
+  category: string
+  author: string
+  date: string
+  readTime: string
+  imageUrl: string
+  link: string
+}
+
 // Define the footer props
 export interface FooterLink {
   label: string

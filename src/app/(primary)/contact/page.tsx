@@ -121,7 +121,7 @@ export default function Component() {
                             )}
                         />
 
-                        <Button type="submit" className="w-full bg-[#3498db] hover:bg-[#2980b9]">
+                        <Button type="submit" className="w-full hover:bg-[#2980b9]">
                             Kirim
                         </Button>
                     </form>

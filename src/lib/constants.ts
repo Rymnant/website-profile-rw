@@ -1,5 +1,6 @@
 import { HeaderNavItem } from '@/lib/types';
 import * as z from "zod";
+import { NewsArticle } from '@/lib/types';
 
 // Description: The file contains the constants that are used in the website.
 
@@ -97,6 +98,65 @@ export const NEWS_PROPS = [
     }
 ];
 
+// Data dummy untuk artikel berita
+export const NEWS_ARTICLES: NewsArticle[] = [
+    {
+        id: "1",
+        title: "Kegiatan Posyandu",
+        description: "Kegiatan Posyandu di RW06 Rejowinangun",
+        category: "Kesehatan",
+        author: "Admin 1",
+        date: "2021-10-01",
+        readTime: "5 min",
+        imageUrl: "/img/hero-background_1.png",
+        link: "/news/1",
+    },
+    {
+        id: "2",
+        title: "Pembangunan Pos Kamling",
+        description: "Pembangunan pos kamling di RW06 Rejowinangun",
+        category: "Infrastruktur",
+        author: "Admin 1",
+        date: "2021-10-01",
+        readTime: "5 min",
+        imageUrl: "/img/hero-background_1.png",
+        link: "/news/2",
+    },
+    {
+        id: "3",
+        title: "Pengumuman PPKM",
+        description: "Pengumuman terkait PPKM di RW06 Rejowinangun",
+        category: "Pengumuman",
+        author: "Admin 1",
+        date: "2021-10-02",
+        readTime: "5 min",
+        imageUrl: "/img/hero-background_1.png",
+        link: "/news/3",
+    },
+    {
+        id: "4",
+        title: "Pembagian Sembako",
+        description: "Pembagian sembako di RW06 Rejowinangun telah selesai dilakukan",
+        category: "Sosial",
+        author: "Admin 1",
+        date: "2021-10-03",
+        readTime: "5 min",
+        imageUrl: "/img/hero-background_1.png",
+        link: "/news/4",
+    },
+    {
+        id: "5",
+        title: "Pembangunan Jalan",
+        description: "Pembangunan jalan di RW06 Rejowinangun telah selesai dilakukan",
+        category: "Infrastruktur",
+        author: "Admin 1",
+        date: "2021-10-04",
+        readTime: "5 min",
+        imageUrl: "/img/hero-background_1.png",
+        link: "/news/5",
+    }
+];
+
 // Define the footer props
 export const FOOTER_PROPS = [
     {
@@ -124,16 +184,16 @@ export const FOOTER_PROPS = [
 ];
 
 export const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Nama harus minimal 2 karakter.",
-  }),
-  subject: z.string().min(2, {
-    message: "Perihal harus minimal 2 karakter.",
-  }),
-  message: z.string().min(10, {
-    message: "Pesan harus minimal 10 karakter.",
-  }),
-  contactMethod: z.enum(["email", "whatsapp"], {
-    required_error: "Silakan pilih metode kontak.",
-  }),
+    name: z.string().min(2, {
+        message: "Nama harus minimal 2 karakter.",
+    }),
+    subject: z.string().min(2, {
+        message: "Perihal harus minimal 2 karakter.",
+    }),
+    message: z.string().min(10, {
+        message: "Pesan harus minimal 10 karakter.",
+    }),
+    contactMethod: z.enum(["email", "whatsapp"], {
+        required_error: "Silakan pilih metode kontak.",
+    }),
 });

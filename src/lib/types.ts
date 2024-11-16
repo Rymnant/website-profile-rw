@@ -50,3 +50,10 @@ export interface FooterSection {
   title: string
   links: FooterLink[]
 }
+
+export type ContactFormValues = {
+  name: string;
+  subject: string;
+  message: string;
+  contactMethod: "email" | "whatsapp";
+};

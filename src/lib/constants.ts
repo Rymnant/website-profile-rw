@@ -1,4 +1,5 @@
 import { HeaderNavItem } from '@/lib/types';
+import * as z from "zod";
 
 // Description: The file contains the constants that are used in the website.
 
@@ -121,3 +122,18 @@ export const FOOTER_PROPS = [
         ]
     }
 ];
+
+export const formSchema = z.object({
+  name: z.string().min(2, {
+    message: "Nama harus minimal 2 karakter.",
+  }),
+  subject: z.string().min(2, {
+    message: "Perihal harus minimal 2 karakter.",
+  }),
+  message: z.string().min(10, {
+    message: "Pesan harus minimal 10 karakter.",
+  }),
+  contactMethod: z.enum(["email", "whatsapp"], {
+    required_error: "Silakan pilih metode kontak.",
+  }),
+});

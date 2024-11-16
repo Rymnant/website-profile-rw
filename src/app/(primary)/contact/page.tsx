@@ -2,33 +2,17 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import * as z from "zod"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { toast } from "@/hooks/use-toast"
-
-const formSchema = z.object({
-    name: z.string().min(2, {
-        message: "Nama harus minimal 2 karakter.",
-    }),
-    subject: z.string().min(2, {
-        message: "Perihal harus minimal 2 karakter.",
-    }),
-    message: z.string().min(10, {
-        message: "Pesan harus minimal 10 karakter.",
-    }),
-    contactMethod: z.enum(["email", "whatsapp"], {
-        required_error: "Silakan pilih metode kontak.",
-    }),
-})
-
-type FormValues = z.infer<typeof formSchema>
+import { handleFormSubmit } from "@/lib/utils"
+import { formSchema } from "@/lib/constants"
+import { ContactFormValues } from "@/lib/types"
 
 export default function Component() {
-    const form = useForm<FormValues>({
+    const form = useForm<ContactFormValues>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             name: "",
@@ -37,13 +21,7 @@ export default function Component() {
         },
     })
 
-    function onSubmit(values: FormValues) {
-        toast({
-            title: "Form berhasil dikirim",
-            description: "Terima kasih telah menghubungi kami.",
-        })
-        console.log(values)
-    }
+    const onSubmit = form.handleSubmit(handleFormSubmit)
 
     return (
         <main className="container mx-auto px-4 py-8 max-w-10xl">
@@ -53,7 +31,7 @@ export default function Component() {
             </div>
             <section className="max-w-2xl mx-auto p-4 md:p-6 lg:p-8">
                 <Form {...form}>
-                    <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <form onSubmit={onSubmit} className="space-y-6">
                         <FormField
                             control={form.control}
                             name="name"

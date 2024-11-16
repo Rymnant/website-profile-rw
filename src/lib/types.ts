@@ -57,3 +57,19 @@ export type ContactFormValues = {
   message: string;
   contactMethod: "email" | "whatsapp";
 };
+
+// Tipe data untuk item galeri
+export interface GalleryItem {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  tags: string[];
+}
+
+export interface GalleryCardProps {
+  title: string;
+  description: string;
+  imageUrl: string;
+  tags: string[];
+}

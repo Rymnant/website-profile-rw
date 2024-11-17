@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Mail, Instagram, MessageCircle, Cloud, ArrowUp, Globe } from 'lucide-react'
+import { Mail, Instagram, MessageCircle, Cloud, ArrowUp } from 'lucide-react'
 import { FOOTER_PROPS } from '@/lib/constants'
 import { useState, useEffect } from 'react'
 

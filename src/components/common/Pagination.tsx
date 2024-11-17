@@ -5,9 +5,10 @@ interface PaginationProps {
   currentPage: number
   totalPages: number
   onPageChange: (page: number) => void
+  className?: string
 }
 
-export function Pagination({ currentPage, totalPages, onPageChange }: PaginationProps) {
+export function Pagination({ currentPage, totalPages, onPageChange, className }: PaginationProps) {
   const maxVisiblePages = 5
 
   const getPageNumbers = () => {
@@ -40,7 +41,7 @@ export function Pagination({ currentPage, totalPages, onPageChange }: Pagination
   }
 
   return (
-    <div className="flex items-center justify-center gap-2">
+    <div className={`flex items-center justify-center gap-2 ${className}`}>
       <Button
         variant="outline"
         size="icon"

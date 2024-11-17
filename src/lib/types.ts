@@ -86,3 +86,10 @@ export interface GalleryCardProps {
   imageUrl: string;
   tags: string[];
 }
+
+// Tipe data untuk anggota organisasi
+export type OrganizationMember = {
+  name: string;
+  position: string;
+  imageUrl?: string;
+};

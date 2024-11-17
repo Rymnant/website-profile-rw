@@ -1,6 +1,7 @@
 import { HeaderNavItem } from '@/lib/types';
 import * as z from "zod";
 import { NewsArticle } from '@/lib/types';
+import { OrganizationMember } from '@/lib/types';
 
 // Description: The file contains the constants that are used in the website.
 
@@ -155,6 +156,17 @@ export const NEWS_ARTICLES: NewsArticle[] = [
         imageUrl: "/img/hero-background_1.png",
         link: "/news/5",
     }
+];
+
+// Data anggota organisasi
+export const organizationMembers: OrganizationMember[] = [
+  { name: "Budi Santoso", position: "Ketua RW", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
+  { name: "Siti Rahayu", position: "Wakil Ketua RW", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
+  { name: "Ahmad Yani", position: "Sekretaris RW", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
+  { name: "Dewi Lestari", position: "Bendahara RW", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
+  { name: "Joko Widodo", position: "Ketua RT 01", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
+  { name: "Mega Wati", position: "Ketua RT 02", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
+  // Tambahkan anggota lainnya sesuai kebutuhan
 ];
 
 // Define the footer props

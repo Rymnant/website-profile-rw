@@ -8,14 +8,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const handleFormSubmit = (values: any) => {
-  toast({
-    title: "Form berhasil dikirim",
-    description: "Terima kasih telah menghubungi kami.",
-  });
-  console.log(values);
-};
-
 export const fetchGalleryItems = (): GalleryItem[] => [
   {
     id: '1',
@@ -74,3 +66,11 @@ export const fetchGalleryItems = (): GalleryItem[] => [
     tags: ['Panen', 'Sayur', 'Lorong']
   }
 ];
+
+export const handleFormSubmit = (values: any) => {
+  toast({
+    title: "Form berhasil dikirim",
+    description: "Terima kasih telah menghubungi kami.",
+  });
+  console.log(values);
+};

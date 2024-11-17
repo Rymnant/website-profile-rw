@@ -10,7 +10,7 @@ const NewsCard = ({ article }: { article: NewsArticle }) => (
   <Card className="flex flex-col h-full">
     <CardHeader className="p-0">
       <div className="relative w-full pt-[50%]">
-        <Image
+        <Image 
           src={article.imageUrl}
           alt={article.title}
           fill

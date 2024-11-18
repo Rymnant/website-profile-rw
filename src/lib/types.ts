@@ -40,7 +40,7 @@ export interface NewsItem {
   href: string
 }
 
-// Tipe data untuk artikel berita
+// Define the news article props
 export type NewsArticle = {
   id: string
   title: string
@@ -64,6 +64,7 @@ export interface FooterSection {
   links: FooterLink[]
 }
 
+// Define the contact form values
 export type ContactFormValues = {
   name: string;
   subject: string;
@@ -71,7 +72,7 @@ export type ContactFormValues = {
   contactMethod: "email" | "whatsapp";
 };
 
-// Tipe data untuk item galeri
+// Define the gallery item
 export interface GalleryItem {
   id: string;
   title: string;
@@ -87,9 +88,32 @@ export interface GalleryCardProps {
   tags: string[];
 }
 
-// Tipe data untuk anggota organisasi
+// Define the organization member
 export type OrganizationMember = {
   name: string;
   position: string;
   imageUrl?: string;
 };
+
+// Define the UMKM item
+export type UMKM = {
+  id: string;
+  label: string;
+  description: string;
+  link?: string;
+};
+
+export type UMKMItem = {
+  id: string;
+  title: string;
+  items?: UMKM[];
+};
+
+// Define the pagination props
+export interface PaginationProps {
+  currentPage: number;
+  totalPages: number;
+  onPageChange: (page: number) => void;
+  className?: string;
+  maxVisiblePages?: number;
+}

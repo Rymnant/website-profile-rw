@@ -6,10 +6,10 @@ interface PaginationProps {
   totalPages: number
   onPageChange: (page: number) => void
   className?: string
+  maxVisiblePages?: number // Add this line
 }
 
-export function Pagination({ currentPage, totalPages, onPageChange, className }: PaginationProps) {
-  const maxVisiblePages = 5
+export function Pagination({ currentPage, totalPages, onPageChange, className, maxVisiblePages = 5 }: PaginationProps) {
 
   const getPageNumbers = () => {
     if (totalPages <= maxVisiblePages) {

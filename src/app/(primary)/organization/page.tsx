@@ -13,7 +13,7 @@ export default function StrukturOrganisasi() {
             </div>
             <section className="py-12 px-4 md:px-6 lg:px-8">
                 <div className="container mx-auto">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
                         {organizationMembers.map((member, index) => (
                             <OrganizationMemberCard key={index} {...member} />
                         ))}

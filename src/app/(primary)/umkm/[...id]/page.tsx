@@ -2,6 +2,8 @@
 
 import { UMKM_ITEMS, ITEMS_PER_PAGE } from '@/lib/constants'
 import Link from 'next/link'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
 import { Pagination } from '@/components/common/Pagination'
 import { useState, useEffect } from 'react'
 import { UMKMItem, UMKM } from '@/lib/types'
@@ -53,11 +55,34 @@ export default function UMKMDetailPage({
     )
 }
 
+{/* Item Detail Section */ }
 function ItemDetail({ item, umkmTitle, rtId }: { item: UMKM, umkmTitle: string, rtId: string | null }) {
     return (
         <div className="container mx-auto px-4 py-8">
-            <h1 className="text-3xl font-bold mb-6">{item.label}</h1>
-            <p className="text-gray-600 mb-4">{item.description}</p>
+            <Card className="mb-8">
+                <CardHeader>
+                    <CardTitle className="text-3xl">{item.label}</CardTitle>
+                    <CardDescription>{umkmTitle}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <Separator className="my-4" />
+                    <h2 className="text-2xl font-semibold mb-4">Produk UMKM</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {item.products && item.products.map((product, index) => (
+                            <Card key={index}>
+                                <CardHeader>
+                                    <CardTitle>{product.label}</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <p className="text-sm text-gray-600">{product.description}</p>
+                                    <p className="mt-2 font-semibold">Harga: Rp {product.price.toLocaleString('id-ID')}</p>
+                                </CardContent>
+                            </Card>
+                        ))}
+                    </div>
+                </CardContent>
+            </Card>
             <Link href={`/umkm/${rtId}`} className="text-blue-500 hover:underline">
                 Kembali ke daftar {umkmTitle}
             </Link>

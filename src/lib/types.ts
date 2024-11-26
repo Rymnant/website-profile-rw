@@ -96,10 +96,18 @@ export type OrganizationMember = {
 };
 
 // Define the UMKM item
+export type Product = {
+  id: string;
+  label: string;
+  description: string;
+  price: number;
+};
+
 export type UMKM = {
   id: string;
   label: string;
   description: string;
+  products?: Product[];
   link?: string;
 };
 

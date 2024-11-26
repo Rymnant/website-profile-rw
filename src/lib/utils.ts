@@ -1,7 +1,7 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { toast } from "@/hooks/use-toast"
-import type { GalleryItem } from "@/lib/types"
+import type { GalleryItem, FormValues } from "@/lib/types"
 
 // Tailwind CSS classnames
 export function cn(...inputs: ClassValue[]) {
@@ -67,7 +67,7 @@ export const fetchGalleryItems = (): GalleryItem[] => [
   }
 ];
 
-export const handleFormSubmit = (values: any) => {
+export const handleFormSubmit = (values: FormValues) => {
   toast({
     title: "Form berhasil dikirim",
     description: "Terima kasih telah menghubungi kami.",

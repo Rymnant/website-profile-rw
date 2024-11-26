@@ -125,3 +125,8 @@ export interface PaginationProps {
   className?: string;
   maxVisiblePages?: number;
 }
+
+// Define the form values
+export interface FormValues {
+  [key: string]: string | number | boolean;
+}

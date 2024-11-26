@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MapPin, CheckCircle } from "lucide-react";
-import MapClient from '@/components/common/MapClient';
+import MapClientWrapper from '@/components/common/MapClientWrapper';
 
 const About = () => {
     return (
@@ -30,7 +30,7 @@ const About = () => {
                         </p>
                     </div>
                     <div className="relative h-[300px] bg-muted rounded-lg overflow-hidden">
-                        <MapClient center={[-7.8049487,110.3985003]} zoom={60} />
+                        {typeof window !== 'undefined' && <MapClientWrapper center={{ lat: -7.8049487, lng: 110.3985003 }} zoom={60} />}
                     </div>
                 </CardContent>
             </Card>

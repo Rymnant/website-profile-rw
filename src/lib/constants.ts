@@ -4,9 +4,6 @@ import { NewsArticle } from '@/lib/types';
 import { OrganizationMember } from '@/lib/types';
 import { UMKMItem } from '@/lib/types';
 
-
-// Description: The file contains the constants that are used in the website.
-
 // Define the navigation items
 export const HEADER_NAV_ITEMS: HeaderNavItem[] = [
     { label: 'Beranda', link: '/' },
@@ -161,7 +158,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
 ];
 
 // Data anggota organisasi
-export const organizationMembers: OrganizationMember[] = [
+export const ORGANIZATION_MEMBER: OrganizationMember[] = [
     { name: "Budi Santoso", position: "Ketua RW", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
     { name: "Siti Rahayu", position: "Wakil Ketua RW", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
     { name: "Ahmad Yani", position: "Sekretaris RW", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },

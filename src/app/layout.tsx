@@ -1,4 +1,5 @@
 import './globals.css'
+import ThemeWrapper from '@/components/layout/theme-wrapper'
 
 export const metadata = {
   title: 'RW06 Rejowinangun',
@@ -13,7 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen">
-        {children}
+        <ThemeWrapper>
+          {children}
+        </ThemeWrapper>
       </body>
     </html>
   )

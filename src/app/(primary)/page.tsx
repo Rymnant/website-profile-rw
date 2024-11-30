@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { HERO_PROPS, INFORMATION_PROPS, NEWS_PROPS } from "@/lib/constants"
 import { motion } from "framer-motion"
+import { fadeInUp } from "@/lib/utils"
 
 export default function HomePage() {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -28,14 +29,12 @@ export default function HomePage() {
         <div className="flex flex-col min-h-screen mt-4">
             {/* Hero Section */}
             <motion.section
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                {...fadeInUp}
                 className="relative w-full bg-background"
             >
                 <div className="relative z-10 mx-auto max-w-screen-xl px-4 py-12 sm:py-24">
                     {HERO_PROPS.map((item, index) => (
-                        <div key={index} className="space-y-4 sm:space-y-8">
+                        <div key={index} className="space-y-3 sm:space-y-6">
                             <motion.h1
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -55,7 +54,7 @@ export default function HomePage() {
                             <motion.p
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.6 }}
+                                transition={{ duration: 0.5, delay: 0.4 }}
                                 className="max-w-2xl text-base sm:text-lg text-muted-foreground"
                             >
                                 {item.tagline}
@@ -83,9 +82,7 @@ export default function HomePage() {
 
             {/* Information Section */}
             <motion.section
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                {...fadeInUp}
                 className="w-full bg-background"
             >
                 <div className="flex py-2 sm:py-24 justify-center">
@@ -138,9 +135,7 @@ export default function HomePage() {
 
             {/* News Section */}
             <motion.section
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                {...fadeInUp}
                 className="w-full flex justify-center items-center bg-background"
             >
                 <div className="container px-4 py-12 sm:py-24 max-w-6xl w-full sm:px-6">

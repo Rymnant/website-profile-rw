@@ -6,6 +6,7 @@ import Link from 'next/link'
 import { Menu, X, ChevronDown, Clock, Users, GitBranch } from 'lucide-react'
 import { HEADER_NAV_ITEMS } from '@/lib/constants'
 import { motion, AnimatePresence } from 'framer-motion'
+import ModeToggle from '@/components/ui/theme-button'
 
 export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -22,18 +23,18 @@ export default function Header() {
 
     return (
         <motion.header
-            className="sticky top-0 z-50 bg-white shadow-md mb-4"
+            className="sticky top-0 z-50 bg-white dark:bg-black shadow-md dark:shadow-lg dark:shadow-cyan-500/50 mb-4"
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ type: "spring", stiffness: 100 }}
         >
             <div className="container mx-auto px-4 py-4 flex items-center justify-between">
                 <Link href="/" className="flex-shrink-0">
-                    <Image src="/icon/icon-transformed.png" alt="RW 012 Logo" width={150} height={50} className="h-12 w-auto" />
+                    <Image src="/icon/icon-transformed.png" alt="RW 012 Logo" width={150} height={50} className="h-12 w-auto dark:bg-white dark:rounded-full" />
                 </Link>
 
                 {/* Desktop Navigation */}
-                <nav className="hidden md:flex space-x-6 ml-auto">
+                <nav className="hidden md:flex space-x-6 ml-auto items-center">
                     {HEADER_NAV_ITEMS.map((item, index) => (
                         item.dropdown ? (
                             <motion.div
@@ -43,11 +44,11 @@ export default function Header() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}
                             >
-                                <button className="text-gray-700 hover:text-gray-900 flex items-center" aria-haspopup="true">
+                                <button className="light:text-gray-700 dark:text-red-600 hover:text-gray-900 flex items-center" aria-haspopup="true">
                                     {item.label} <ChevronDown className="ml-1 h-4 w-4" />
                                 </button>
-                                <motion.div
-                                    className="absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-200"
+                                <motion.div 
+                                    className="absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-100"
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.2 }}
@@ -86,6 +87,7 @@ export default function Header() {
                             </motion.div>
                         )
                     ))}
+                    <ModeToggle/>
                 </nav>
 
                 <div className="flex items-center space-x-4">
@@ -111,6 +113,7 @@ export default function Header() {
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
                     >
+                        
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                             {HEADER_NAV_ITEMS.map((item) => (
                                 <div key={item.label}>
@@ -174,6 +177,9 @@ export default function Header() {
                                     )}
                                 </div>
                             ))}
+                        </div>
+                        <div className='mb-3 mx-3'>
+                            <ModeToggle/>
                         </div>
                     </motion.div>
                 )}

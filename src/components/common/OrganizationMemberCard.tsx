@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import type { OrganizationMember } from '@/lib/types'
 
-// Komponen untuk menampilkan satu anggota organisasi
 const OrganizationMemberCard: React.FC<OrganizationMember> = ({ name, position, imageUrl }) => (
     <Card className="flex flex-col items-center text-center">
         <CardHeader>

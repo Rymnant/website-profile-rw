@@ -30,7 +30,7 @@ export const HEADER_NAV_ITEMS: HeaderNavItem[] = [
 
 // Define the hero section props
 export const HERO_PROPS = [{
-    title: 'Selamat Datang',
+    title: 'Hello World',
     subtitle: 'Di website resmi RW06 Rejowinangun',
     tagline: 'Website ini berisi informasi seputar RW06 Rejowinangun',
     buttonText: 'Tentang Kami',

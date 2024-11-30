@@ -4,6 +4,8 @@ import { useState } from "react"
 import { NEWS_ARTICLES } from "@/lib/constants"
 import NewsCard from "@/components/common/NewsCard"
 import { Pagination } from "@/components/common/Pagination"
+import { fadeInUp, staggerChildren } from "@/lib/utils"
+import { motion } from 'framer-motion'
 
 export default function NewsSection() {
   const [currentPage, setCurrentPage] = useState(1)
@@ -16,18 +18,36 @@ export default function NewsSection() {
   )
 
   return (
-    <main className="container mx-auto px-4 py-8 max-w-10xl">
-      <div className="mb-8 md:mb-12 mt-8 md:mt-12 text-left">
+    <motion.main
+      initial="initial"
+      animate="animate"
+      className="container mx-auto px-4 py-8 max-w-10xl">
+      <motion.div
+        {...fadeInUp}
+        className="mb-8 md:mb-12 mt-8 md:mt-12 text-left">
         <h1 className="text-3xl md:text-4xl font-bold mb-2">Berita Terkini</h1>
         <p className="text-sm md:text-base text-muted-foreground">Berita terkini dari RW6 Rejowinangun</p>
-      </div>
+      </motion.div>
 
       <section className="py-6 md:py-12">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10"
+          initial="hidden"
+          animate="visible"
+          variants={staggerChildren}
+        >
           {currentArticles.map((article) => (
-            <NewsCard key={article.id} article={article} />
+            <motion.div
+              key={article.id}
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: { opacity: 1, y: 0 }
+              }}
+            >
+              <NewsCard key={article.id} article={article} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
@@ -35,6 +55,6 @@ export default function NewsSection() {
           className="mt-8"
         />
       </section>
-    </main>
+    </motion.main>
   )
 }

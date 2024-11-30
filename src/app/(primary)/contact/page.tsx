@@ -10,6 +10,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { handleFormSubmit } from "@/lib/utils"
 import { formSchema } from "@/lib/constants"
 import { ContactFormValues } from "@/lib/types"
+import { motion } from "framer-motion"
+import { fadeInUp } from "@/lib/utils"
 
 export default function Component() {
     const form = useForm<ContactFormValues>({
@@ -24,12 +26,21 @@ export default function Component() {
     const onSubmit = form.handleSubmit(handleFormSubmit)
 
     return (
-        <main className="container mx-auto px-4 py-8 max-w-10xl">
-            <div className="mb-12 mt-12 text-left">
+        <motion.main 
+            {...fadeInUp}
+            className="container mx-auto px-4 py-8 max-w-10xl"
+        >
+            <motion.div 
+                {...fadeInUp}
+                className="mb-12 mt-12 text-left"
+            >
                 <h1 className="text-4xl font-bold mb-2">Hubungi Kami</h1>
                 <p className="text-muted-foreground">Hubungi kami jika Anda memiliki pertanyaan, saran dan kritik untuk RW 6 Rejowinangun</p>
-            </div>
-            <section className="max-w-2xl mx-auto p-4 md:p-6 lg:p-8">
+            </motion.div>
+            <motion.section 
+                {...fadeInUp}
+                className="max-w-2xl mx-auto p-4 md:p-6 lg:p-8"
+            >
                 <Form {...form}>
                     <form onSubmit={onSubmit} className="space-y-6">
                         <FormField
@@ -126,7 +137,7 @@ export default function Component() {
                         </Button>
                     </form>
                 </Form>
-            </section>
-        </main>
+            </motion.section>
+        </motion.main>
     )
 }

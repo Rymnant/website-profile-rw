@@ -40,7 +40,7 @@ export const HERO_PROPS = [{
 
 // Define the information section props
 export const INFORMATION_PROPS = [
-    { title: 'Informasi', description: 'Informasi seputar RW06 Rejowinangun', href: '/information' },
+    { title: 'Struktur Organisasi', description: 'Struktur organisasi RW06 Rejowinangun', href: '/organization' },
     { title: 'UMKM', description: 'Daftar UMKM di RW06 Rejowinangun', href: '/umkm' },
     { title: 'Galeri', description: 'Galeri foto RW06 Rejowinangun', href: '/gallery' },
     { title: 'Hubungi Kami', description: 'Hubungi kami untuk informasi lebih lanjut', href: '/contact' },

@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { HERO_PROPS, INFORMATION_PROPS, NEWS_PROPS } from "@/lib/constants"
 import { motion } from "framer-motion"
-import { fadeInUp } from "@/lib/utils"
+import { fadeInUp, staggerChildren } from "@/lib/utils"
 
 export default function HomePage() {
     const scrollContainerRef = useRef<HTMLDivElement>(null)
@@ -32,37 +32,34 @@ export default function HomePage() {
                 {...fadeInUp}
                 className="relative w-full bg-background"
             >
-                <div className="relative z-10 mx-auto max-w-screen-xl px-4 py-12 sm:py-24">
+                <motion.div
+                    variants={staggerChildren}
+                    initial="initial"
+                    animate="animate"
+                    className="relative z-10 mx-auto max-w-screen-xl px-4 py-12 sm:py-24"
+                >
                     {HERO_PROPS.map((item, index) => (
-                        <div key={index} className="space-y-3 sm:space-y-6">
+                        <motion.div key={index} variants={fadeInUp} className="space-y-3 sm:space-y-6">
                             <motion.h1
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.2 }}
+                                variants={fadeInUp}
                                 className="text-3xl sm:text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-7xl"
                             >
                                 {item.title}
                             </motion.h1>
                             <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.4 }}
+                                variants={fadeInUp}
                                 className="max-w-3xl text-lg sm:text-xl text-foreground/90 sm:text-2xl"
                             >
                                 {item.subtitle}
                             </motion.p>
                             <motion.p
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.4 }}
+                                variants={fadeInUp}
                                 className="max-w-2xl text-base sm:text-lg text-muted-foreground"
                             >
                                 {item.tagline}
                             </motion.p>
                             <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.5, delay: 0.8 }}
+                                variants={fadeInUp}
                                 className="pt-4"
                             >
                                 <Link href={item.buttonHref}>
@@ -75,9 +72,9 @@ export default function HomePage() {
                                     </Button>
                                 </Link>
                             </motion.div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </motion.section>
 
             {/* Information Section */}
@@ -85,20 +82,21 @@ export default function HomePage() {
                 {...fadeInUp}
                 className="w-full bg-background"
             >
-                <div className="flex py-2 sm:py-24 justify-center">
+                <motion.div
+                    variants={staggerChildren}
+                    initial="initial"
+                    animate="animate"
+                    className="flex py-2 sm:py-24 justify-center"
+                >
                     <div className="max-w-6xl w-full px-4 sm:px-6">
                         <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
+                            variants={fadeInUp}
                             className="mb-2 text-xl sm:text-2xl font-bold"
                         >
                             Informasi
                         </motion.h2>
                         <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, delay: 0.4 }}
+                            variants={fadeInUp}
                             className="text-gray-500 dark:text-gray-400 mb-10"
                         >
                             Informasi terkait RW06 Rejowinangun
@@ -107,9 +105,7 @@ export default function HomePage() {
                             {INFORMATION_PROPS.map((item, index) => (
                                 <motion.div
                                     key={index}
-                                    initial={{ opacity: 0, x: -20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
+                                    variants={fadeInUp}
                                     className="group relative pl-6 sm:pl-8"
                                 >
                                     <Link
@@ -130,7 +126,7 @@ export default function HomePage() {
                             ))}
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </motion.section>
 
             {/* News Section */}
@@ -138,19 +134,20 @@ export default function HomePage() {
                 {...fadeInUp}
                 className="w-full flex justify-center items-center bg-background"
             >
-                <div className="container px-4 py-12 sm:py-24 max-w-6xl w-full sm:px-6">
+                <motion.div
+                    variants={staggerChildren}
+                    initial="initial"
+                    animate="animate"
+                    className="container px-4 py-12 sm:py-24 max-w-6xl w-full sm:px-6"
+                >
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.2 }}
+                        variants={fadeInUp}
                         className="mb-2 text-xl sm:text-2xl font-bold"
                     >
                         Berita
                     </motion.h2>
                     <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.4 }}
+                        variants={fadeInUp}
                         className="text-gray-500 dark:text-gray-400 mb-10"
                     >
                         Berita terbaru seputar RW06 Rejowinangun
@@ -160,12 +157,10 @@ export default function HomePage() {
                             ref={scrollContainerRef}
                             className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth pb-4 no-scrollbar"
                         >
-                            {NEWS_PROPS.map((item, index) => (
+                            {NEWS_PROPS.map((item) => (
                                 <motion.div
                                     key={item.id}
-                                    initial={{ opacity: 0, x: 20 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
+                                    variants={fadeInUp}
                                 >
                                     <Card className="min-w-[250px] sm:min-w-[300px] max-w-[250px] sm:max-w-[300px] border-none shadow-none">
                                         <CardContent className="p-0">
@@ -225,7 +220,7 @@ export default function HomePage() {
                             </Button>
                         </div>
                     </div>
-                </div>
+                </motion.div>
             </motion.section>
         </div>
     )

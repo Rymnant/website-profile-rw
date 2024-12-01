@@ -99,6 +99,7 @@ export type OrganizationMember = {
 export type UMKM = {
   id: string;
   label: string;
+  category: string; // Add this line
   description: string;
   link?: string;
 };

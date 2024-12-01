@@ -23,7 +23,7 @@ export default function Header() {
 
     return (
         <motion.header
-            className="sticky top-0 z-50 bg-white dark:bg-black shadow-md dark:shadow-lg dark:shadow-cyan-500/50 mb-4"
+            className="sticky top-0 z-50 bg-white dark:bg-black shadow-md mb-4"
             initial={{ y: -100 }}
             animate={{ y: 0 }}
             transition={{ type: "spring", stiffness: 100 }}

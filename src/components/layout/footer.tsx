@@ -57,7 +57,7 @@ export default function Footer() {
     }
 
     return (
-        <footer className="w-full bg-white dark:bg-gray-900 pt-8 pb-4">
+        <footer className="w-full light:bg-white dark:bg-gray-900 pt-8 pb-4">
             <div className="container mx-auto px-4">
                 {/* Mobile View */}
                 <div className="md:hidden flex flex-col items-center text-center">

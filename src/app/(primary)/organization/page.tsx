@@ -6,7 +6,7 @@ import OrganizationMemberCard from '@/components/common/OrganizationMemberCard'
 import { motion } from 'framer-motion'
 import { fadeInUp } from "@/lib/utils"
 
-export default function StrukturOrganisasi() {
+export default function OrganizationStructure() {
     return (
         <motion.main
             initial="initial"

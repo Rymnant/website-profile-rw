@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react';
 import { UMKMList } from '@/components/common/UMKMList';
 import { UMKM_ITEMS } from '@/lib/constants';
+import { motion } from 'framer-motion';
+import { fadeInUp } from "@/lib/utils";
 
 export function UMKMListContainer({
     paramsPromise
@@ -20,7 +22,7 @@ export function UMKMListContainer({
         return <div>Loading...</div>;
     }
 
-    const rtId = params.id[0];
+    const rtId = params.id?.[0] || UMKM_ITEMS[0].id;
     const umkm = UMKM_ITEMS.find(item => item.id === rtId);
 
     if (!umkm) {
@@ -28,11 +30,25 @@ export function UMKMListContainer({
     }
 
     return (
-        <UMKMList
-            umkm={umkm}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            rtId={rtId}
-        />
+        <motion.div
+            initial="initial"
+            animate="animate"
+            className="container mx-auto px-4 py-8 max-w-10xl"
+        >
+            <motion.div {...fadeInUp} className="mb-12 mt-12 text-left">
+                <h1 className="text-4xl font-bold mb-2">UMKM di {umkm.id.toUpperCase()}</h1>
+                <p className="text-muted-foreground">
+                    Temukan berbagai UMKM lokal di {umkm.id.toUpperCase()} yang bisa kamu kunjungi
+                </p>
+            </motion.div>
+            <motion.div className="space-y-8">
+                <UMKMList
+                    umkm={umkm}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    rtId={rtId}
+                />
+            </motion.div>
+        </motion.div>
     );
 }

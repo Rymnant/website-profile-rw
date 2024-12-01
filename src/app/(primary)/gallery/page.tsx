@@ -23,10 +23,9 @@ const GalleryPage: React.FC = () => {
     <motion.main
       initial="initial"
       animate="animate"
+      variants={staggerChildren}
       className="container mx-auto px-4 py-8 max-w-10xl">
-      <motion.div 
-      {...fadeInUp}
-      className="mb-12 mt-12 text-left">
+      <motion.div {...fadeInUp} className="mb-12 mt-12 text-left">
         <h1 className="text-4xl font-bold mb-2">Galeri</h1>
         <p className="text-muted-foreground">Kumpulan foto-foto kegiatan di RW06 Rejowinangun</p>
       </motion.div>
@@ -37,7 +36,15 @@ const GalleryPage: React.FC = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
             initial="hidden"
             animate="visible"
-            variants={staggerChildren}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
           >
             {currentItems.map((item) => (
               <motion.div

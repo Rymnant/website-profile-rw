@@ -4,7 +4,7 @@ import { useState } from "react"
 import { NEWS_ARTICLES } from "@/lib/constants"
 import NewsCard from "@/components/common/NewsCard"
 import { Pagination } from "@/components/common/Pagination"
-import { fadeInUp, staggerChildren } from "@/lib/utils"
+import { fadeInUp } from "@/lib/utils"
 import { motion } from 'framer-motion'
 
 export default function NewsSection() {
@@ -34,7 +34,15 @@ export default function NewsSection() {
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-10"
           initial="hidden"
           animate="visible"
-          variants={staggerChildren}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.1
+              }
+            }
+          }}
         >
           {currentArticles.map((article) => (
             <motion.div

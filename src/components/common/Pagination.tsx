@@ -6,10 +6,14 @@ interface PaginationProps {
   totalPages: number
   onPageChange: (page: number) => void
   className?: string
-  maxVisiblePages?: number // Add this line
+  maxVisiblePages?: number
 }
 
 export function Pagination({ currentPage, totalPages, onPageChange, className, maxVisiblePages = 5 }: PaginationProps) {
+  const handlePageChange = (page: number) => {
+    onPageChange(page)
+    window.scrollTo(0, 0)
+  }
 
   const getPageNumbers = () => {
     if (totalPages <= maxVisiblePages) {
@@ -45,7 +49,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className, m
       <Button
         variant="outline"
         size="icon"
-        onClick={() => onPageChange(currentPage - 1)}
+        onClick={() => handlePageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
         <ChevronLeft className="h-4 w-4" />
@@ -59,7 +63,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className, m
           <Button
             key={pageNumber}
             variant={pageNumber === currentPage ? "default" : "outline"}
-            onClick={() => onPageChange(pageNumber)}
+            onClick={() => handlePageChange(pageNumber)}
           >
             {pageNumber}
           </Button>
@@ -68,7 +72,7 @@ export function Pagination({ currentPage, totalPages, onPageChange, className, m
       <Button
         variant="outline"
         size="icon"
-        onClick={() => onPageChange(currentPage + 1)}
+        onClick={() => handlePageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
         <ChevronRight className="h-4 w-4" />

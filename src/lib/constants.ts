@@ -245,7 +245,7 @@ export const UMKM_ITEMS: UMKMItem[] = [
 ];
 
 // Define the number of items per page for pagination
-export const ITEMS_PER_PAGE = 10;
+export const ITEMS_PER_PAGE = 6;
 
 // Define the footer props
 export const FOOTER_PROPS = [

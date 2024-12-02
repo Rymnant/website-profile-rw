@@ -28,7 +28,7 @@ const GalleryCard: React.FC<GalleryCardProps & { onClick: () => void }> = ({ tit
         <CardDescription className="text-sm text-gray-600 mb-4">{description}</CardDescription>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <Badge key={tag} variant="secondary" className='dark:bg-white dark:text-black'>{tag}</Badge>
+            <Badge key={tag} variant="secondary" className='bg-black text-white dark:bg-white dark:text-black'>{tag}</Badge>
           ))}
         </div>
       </CardContent>

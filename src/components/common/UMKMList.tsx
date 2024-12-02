@@ -61,7 +61,7 @@ export function UMKMList({
                   <CardHeader className="p-0">
                     <div className="relative h-48 w-full">
                       <div className="absolute top-4 right-4">
-                        <Badge variant="secondary" className="text-primary bg-gray-100 dark:bg-white dark:text-black">
+                        <Badge variant="secondary" className="text-primary bg-black text-white dark:bg-white dark:text-black">
                           {item.category}
                         </Badge>
                       </div>

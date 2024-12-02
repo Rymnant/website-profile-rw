@@ -8,9 +8,9 @@ import { fadeInUp, staggerChildren } from "@/lib/utils"
 
 const DynamicMapClientWrapper = dynamic(() => import('@/components/common/MapClientWrapper'), { ssr: false });
 
-export default function About(){
+export default function About() {
     return (
-        <motion.main 
+        <motion.main
             initial="initial"
             animate="animate"
             className="container mx-auto px-4 py-8 max-w-10xl"
@@ -29,21 +29,24 @@ export default function About(){
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="grid md:grid-cols-2 gap-8">
-                        <motion.div 
+                        <motion.div
                             className="space-y-4"
                             variants={staggerChildren}
                         >
                             <motion.p variants={fadeInUp}>
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe totam repellendus dicta officiis dignissimos. Vitae earum consequatur quis ab asperiores ea sapiente, animi totam voluptatibus expedita dolores maxime soluta nobis?
+                                RW 6 Rejowinangun terletak di wilayah Kelurahan Rejowinangun, Kecamatan Kotagede, Kota Yogyakarta. Secara geografis, kawasan ini berada di sisi tenggara Kota Yogyakarta dan berbatasan dengan beberapa area yang memiliki nilai historis dan budaya tinggi.
                             </motion.p>
                             <motion.p variants={fadeInUp}>
-                                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repellendus id adipisci sunt et nostrum harum. Pariatur nihil odit sapiente odio distinctio, mollitia cupiditate deleniti ipsum magni cum sint alias earum!
+                                Rejowinangun sendiri merupakan salah satu kelurahan yang berada di dekat perbatasan antara Kota Yogyakarta dan Kabupaten Bantul, sehingga RW 6 menjadi bagian dari kawasan transisi antara lingkungan urban dan suburban.
                             </motion.p>
                             <motion.p variants={fadeInUp}>
-                                Kawasan RW 06 merupakan kawasan hunian dengan jumlah total 4 RT.
+                                Kawasan RW 06 merupakan salah satu wilayah pemukiman yang terletak di Kelurahan Rejowinangun, dengan struktur administratif yang terdiri dari 4 Rukun Tetangga (RT) di dalamnya.
+                            </motion.p>
+                            <motion.p variants={fadeInUp}>
+                            Setiap RT memiliki karakteristik tersendiri, mencerminkan keragaman aktivitas masyarakat yang menghuni kawasan ini. Wilayah ini didominasi oleh hunian keluarga dengan lingkungan yang rapi dan tertata baik, menciptakan suasana yang nyaman dan harmonis bagi para penduduknya.
                             </motion.p>
                         </motion.div>
-                        <motion.div 
+                        <motion.div
                             className="relative h-[300px] bg-muted rounded-lg overflow-hidden"
                             variants={fadeInUp}
                         >

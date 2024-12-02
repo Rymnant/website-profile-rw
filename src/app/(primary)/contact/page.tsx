@@ -26,14 +26,8 @@ export default function Component() {
     const onSubmit = form.handleSubmit(handleFormSubmit)
 
     return (
-        <motion.main
-            {...fadeInUp}
-            className="container mx-auto px-4 py-8 max-w-10xl"
-        >
-            <motion.div
-                {...fadeInUp}
-                className="mb-12 mt-12 text-left"
-            >
+        <motion.main {...fadeInUp} className="container mx-auto px-4 py-8 max-w-10xl">
+            <motion.div {...fadeInUp} className="mb-2 mt-2 text-left">
                 <h1 className="text-4xl font-bold mb-2">Hubungi Kami</h1>
                 <p className="text-muted-foreground">Hubungi kami jika Anda memiliki pertanyaan, saran dan kritik untuk RW 6 Rejowinangun</p>
             </motion.div>
@@ -42,7 +36,7 @@ export default function Component() {
                     hidden: { opacity: 0, y: 50, transition: { duration: 0.8, ease: "easeOut" } },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
                 }}
-                className="max-w-2xl mx-auto p-4 md:p-6 lg:p-8"
+                className="max-w-2xl mx-auto p-4 mt-5 md:p-6 lg:p-8"
             >
                 <Form {...form}>
                     <form onSubmit={onSubmit} className="space-y-6">

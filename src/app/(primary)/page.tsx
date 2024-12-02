@@ -78,10 +78,7 @@ export default function HomePage() {
             </motion.section>
 
             {/* Information Section */}
-            <motion.section
-                {...fadeInUp}
-                className="w-full bg-background"
-            >
+            <motion.section {...fadeInUp} className="w-full bg-background">
                 <motion.div
                     variants={staggerChildren}
                     initial="initial"
@@ -89,29 +86,14 @@ export default function HomePage() {
                     className="flex py-2 sm:py-24 justify-center"
                 >
                     <div className="max-w-6xl w-full px-4 sm:px-6">
-                        <motion.h2
-                            variants={fadeInUp}
-                            className="mb-2 text-xl sm:text-2xl font-bold"
-                        >
-                            Informasi
-                        </motion.h2>
-                        <motion.p
-                            variants={fadeInUp}
-                            className="text-gray-500 dark:text-gray-400 mb-10"
-                        >
+                        <motion.h2 variants={fadeInUp} className="mb-2 text-xl sm:text-2xl font-bold">Informasi</motion.h2>
+                        <motion.p variants={fadeInUp} className="text-gray-500 dark:text-gray-400 mb-12">
                             Informasi terkait RW06 Rejowinangun
                         </motion.p>
-                        <div className="grid gap-8 sm:gap-12 md:grid-cols-2 lg:grid-cols-2">
+                        <div className="grid gap-6 sm:gap-12 md:grid-cols-2 lg:grid-cols-2">
                             {INFORMATION_PROPS.map((item, index) => (
-                                <motion.div
-                                    key={index}
-                                    variants={fadeInUp}
-                                    className="group relative pl-6 sm:pl-8"
-                                >
-                                    <Link
-                                        href={item.href}
-
-                                    >
+                                <motion.div key={index} variants={fadeInUp} className="group relative pl-6 sm:pl-8">
+                                    <Link href={item.href}>
                                         <div className="absolute left-0 top-0 h-full w-1 bg-gray-200 transition-colors duration-200 group-hover:bg-blue-500" />
                                         <div className="space-y-2">
                                             <h3 className="text-lg sm:text-xl font-semibold tracking-tight transition-colors group-hover:text-blue-500">

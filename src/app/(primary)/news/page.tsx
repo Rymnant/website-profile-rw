@@ -4,7 +4,7 @@ import { useState } from "react"
 import { NEWS_ARTICLES } from "@/lib/constants"
 import NewsCard from "@/components/common/NewsCard"
 import { Pagination } from "@/components/common/Pagination"
-import { fadeInUp } from "@/lib/utils"
+import { fadeInUp, staggerChildren } from "@/lib/utils"
 import { motion } from 'framer-motion'
 
 export default function NewsSection() {
@@ -21,10 +21,9 @@ export default function NewsSection() {
     <motion.main
       initial="initial"
       animate="animate"
+      variants={staggerChildren}
       className="container mx-auto px-4 py-8 max-w-10xl">
-      <motion.div
-        {...fadeInUp}
-        className="mb-8 md:mb-12 mt-8 md:mt-12 text-left">
+      <motion.div {...fadeInUp} className="mb-2 mt-2 text-left">
         <h1 className="text-3xl md:text-4xl font-bold mb-2">Berita Terkini</h1>
         <p className="text-sm md:text-base text-muted-foreground">Berita terkini dari RW6 Rejowinangun</p>
       </motion.div>

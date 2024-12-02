@@ -44,30 +44,30 @@ export default function Header() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}
                             >
-                                <button className="light:text-gray-700 dark:text-red-600 hover:text-gray-900 flex items-center" aria-haspopup="true">
+                                <button className="light:text-gray-700 dark:text-white hover:text-gray-900 flex items-center" aria-haspopup="true">
                                     {item.label} <ChevronDown className="ml-1 h-4 w-4" />
                                 </button>
-                                <motion.div 
+                                <motion.div
                                     className="absolute left-0 mt-2 w-80 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible duration-100"
                                     initial={{ opacity: 0, y: 10 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.2 }}
                                 >
-                                    <div className="py-2" role="menu" aria-orientation="vertical">
+                                    <div className="py-2 bg-white dark:bg-black" role="menu" aria-orientation="vertical">
                                         {item.dropdown.map((subItem) => (
-                                            <Link key={subItem.label} href={subItem.link!} className="block hover:bg-gray-50 transition-colors duration-150" role="menuitem" onClick={handleLinkClick}>
+                                            <Link key={subItem.label} href={subItem.link!} className="block hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors duration-150" role="menuitem" onClick={handleLinkClick}>
                                                 <div className="flex p-4 items-start">
-                                                    <div className="flex-shrink-0 h-10 w-10 rounded bg-gray-100 flex items-center justify-center">
-                                                        {subItem.label === 'Profil' && <Clock className="h-5 w-5 text-gray-600" />}
-                                                        {subItem.label === 'Struktur Organisasi' && <GitBranch className="h-5 w-5 text-gray-600" />}
-                                                        {subItem.label === 'UMKM RT 17' && <Users className="h-5 w-5 text-gray-600" />}
-                                                        {subItem.label === 'UMKM RT 18' && <Users className="h-5 w-5 text-gray-600" />}
-                                                        {subItem.label === 'UMKM RT 19' && <Users className="h-5 w-5 text-gray-600" />}
-                                                        {subItem.label === 'UMKM RT 20' && <Users className="h-5 w-5 text-gray-600" />}
+                                                    <div className="flex-shrink-0 h-10 w-10 rounded bg-gray-100 dark:bg-white flex items-center justify-center">
+                                                        {subItem.label === 'Profil' && <Clock className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                        {subItem.label === 'Struktur Organisasi' && <GitBranch className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                        {subItem.label === 'UMKM RT 17' && <Users className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                        {subItem.label === 'UMKM RT 18' && <Users className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                        {subItem.label === 'UMKM RT 19' && <Users className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                        {subItem.label === 'UMKM RT 20' && <Users className="h-5 w-5 text-gray-600 dark:text-black" />}
                                                     </div>
                                                     <div className="ml-4">
-                                                        <p className="text-sm font-medium text-gray-900">{subItem.label}</p>
-                                                        {subItem.description && <p className="text-sm text-gray-500">{subItem.description}</p>}
+                                                        <p className="text-sm font-medium text-gray-900 dark:text-white">{subItem.label}</p>
+                                                        {subItem.description && <p className="text-sm text-gray-500 dark:text-white">{subItem.description}</p>}
                                                     </div>
                                                 </div>
                                             </Link>
@@ -83,11 +83,11 @@ export default function Header() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}
                             >
-                                <Link href={item.link} className="text-gray-700 hover:text-gray-900" onClick={handleLinkClick}>{item.label}</Link>
+                                <Link href={item.link} className="text-gray-700 dark:text-white hover:text-gray-900" onClick={handleLinkClick}>{item.label}</Link>
                             </motion.div>
                         )
                     ))}
-                    <ModeToggle/>
+                    <ModeToggle />
                 </nav>
 
                 <div className="flex items-center space-x-4">
@@ -113,7 +113,7 @@ export default function Header() {
                         exit={{ opacity: 0, height: 0 }}
                         transition={{ duration: 0.3 }}
                     >
-                        
+
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                             {HEADER_NAV_ITEMS.map((item) => (
                                 <div key={item.label}>
@@ -123,14 +123,14 @@ export default function Header() {
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ duration: 0.3 }}
                                         >
-                                            <Link href={item.link} className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" onClick={handleLinkClick}>{item.label}</Link>
+                                            <Link href={item.link} className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-white hover:text-white hover:bg-gray-900" onClick={handleLinkClick}>{item.label}</Link>
                                         </motion.div>
                                     }
                                     {item.dropdown && (
                                         <>
                                             <motion.button
                                                 onClick={() => toggleMobileDropdown(item.label)}
-                                                className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                                                className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 dark:text-white hover:text-white hover:bg-gray-900"
                                                 aria-expanded={activeDropdown === item.label}
                                                 initial={{ opacity: 0, x: -20 }}
                                                 animate={{ opacity: 1, x: 0 }}
@@ -154,17 +154,19 @@ export default function Header() {
                                                                 animate={{ opacity: 1, x: 0 }}
                                                                 transition={{ duration: 0.3 }}
                                                             >
-                                                                <Link href={subItem.link!} className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50" onClick={handleLinkClick}>
+                                                                <Link href={subItem.link!} className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-white" onClick={handleLinkClick}>
                                                                     <div className="flex items-center">
-                                                                        {subItem.label === 'Profil' && <Clock className="h-5 w-5 mr-5 text-gray-600" />}
-                                                                        {subItem.label === 'Struktur Organisasi' && <GitBranch className="h-5 w-5 mr-5 text-gray-600" />}
-                                                                        {subItem.label === 'UMKM RT 17' && <Users className="h-5 w-5 mr-5 text-gray-600" />}
-                                                                        {subItem.label === 'UMKM RT 18' && <Users className="h-5 w-5 mr-5 text-gray-600" />}
-                                                                        {subItem.label === 'UMKM RT 19' && <Users className="h-5 w-5 mr-5 text-gray-600" />}
-                                                                        {subItem.label === 'UMKM RT 20' && <Users className="h-5 w-5 mr-5 text-gray-600" />}
-                                                                        <div>
-                                                                            <div className="font-medium">{subItem.label}</div>
-                                                                            {subItem.description && <div className="text-sm text-gray-500">{subItem.description}</div>}
+                                                                        <div className="flex-shrink-0 h-10 w-10 rounded bg-gray-100 dark:bg-white flex items-center justify-center">
+                                                                            {subItem.label === 'Profil' && <Clock className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                                            {subItem.label === 'Struktur Organisasi' && <GitBranch className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                                            {subItem.label === 'UMKM RT 17' && <Users className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                                            {subItem.label === 'UMKM RT 18' && <Users className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                                            {subItem.label === 'UMKM RT 19' && <Users className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                                            {subItem.label === 'UMKM RT 20' && <Users className="h-5 w-5 text-gray-600 dark:text-black" />}
+                                                                        </div>
+                                                                        <div className="ml-4">
+                                                                            <p className="text-sm font-medium text-gray-900 dark:text-white">{subItem.label}</p>
+                                                                            {subItem.description && <p className="text-sm text-gray-500 dark:text-white">{subItem.description}</p>}
                                                                         </div>
                                                                     </div>
                                                                 </Link>
@@ -179,7 +181,7 @@ export default function Header() {
                             ))}
                         </div>
                         <div className='mb-3 mx-3'>
-                            <ModeToggle/>
+                            <ModeToggle />
                         </div>
                     </motion.div>
                 )}

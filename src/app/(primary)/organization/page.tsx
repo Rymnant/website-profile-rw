@@ -13,10 +13,7 @@ export default function OrganizationStructure() {
             animate="animate"
             className="container mx-auto px-4 py-8 max-w-10xl"
         >
-            <motion.div
-                {...fadeInUp}
-                className="mb-12 mt-12 text-left"
-            >
+            <motion.div {...fadeInUp} className="mb-4 mt-4 text-left">
                 <h1 className="text-4xl font-bold mb-2">Struktur Organisasi RW dan RT Rejowinangun</h1>
                 <p className="text-muted-foreground">Berikut adalah struktur organisasi Rukun Warga (RW) dan Rukun Tetangga (RT) di wilayah Rejowinangun.
                 Kami berkomitmen untuk melayani dan memajukan komunitas kita bersama.</p>

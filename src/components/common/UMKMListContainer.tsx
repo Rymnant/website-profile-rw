@@ -35,7 +35,7 @@ export function UMKMListContainer({
             animate="animate"
             className="container mx-auto px-4 py-8 max-w-10xl"
         >
-            <motion.div {...fadeInUp} className="mb-12 mt-12 text-left">
+            <motion.div {...fadeInUp} className="mb-4 mt-4 text-left">
                 <h1 className="text-4xl font-bold mb-2">UMKM di {umkm.id.toUpperCase()}</h1>
                 <p className="text-muted-foreground">
                     Temukan berbagai UMKM lokal di {umkm.id.toUpperCase()} yang bisa kamu kunjungi

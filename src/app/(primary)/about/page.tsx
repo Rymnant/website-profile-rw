@@ -15,15 +15,12 @@ export default function About(){
             animate="animate"
             className="container mx-auto px-4 py-8 max-w-10xl"
         >
-            <motion.div 
-                {...fadeInUp} 
-                className="mb-12 mt-12 text-left"
-            >
+            <motion.div {...fadeInUp} className="mb-4 mt-4 text-left">
                 <h1 className="text-4xl font-bold mb-2">Profil</h1>
                 <p className="text-muted-foreground">Letak geografis serta visi dan misi</p>
             </motion.div>
 
-            <motion.div {...fadeInUp}>
+            <motion.div {...fadeInUp} className="mt-5">
                 <Card className="mb-12">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2">

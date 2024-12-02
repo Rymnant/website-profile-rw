@@ -35,9 +35,9 @@ export default function Umkm() {
       initial="initial"
       animate="animate"
       className="container mx-auto px-4 py-8 max-w-10xl"
-      variants={staggerChildren} // Tambahkan ini
+      variants={staggerChildren}
     >
-      <motion.div className="mb-12 mt-12 text-left" {...fadeInUp}>
+      <motion.div className="mb-4 mt-4 text-left" {...fadeInUp}>
         <motion.div className="mb-8" {...fadeInUp}>
           <h1 className="text-4xl font-bold mb-2">Daftar UMKM</h1>
           <p className="text-muted-foreground">
@@ -45,7 +45,6 @@ export default function Umkm() {
           </p>
         </motion.div>
 
-        {/* Statistics Overview */}
         <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8" variants={staggerChildren}>
           <motion.div variants={fadeInUp}>
             <Card>
@@ -105,9 +104,7 @@ export default function Umkm() {
           </motion.div>
         </motion.div>
 
-        {/* UMKM Charts */}
         <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8" variants={staggerChildren}>
-          {/* Bar Chart */}
           <motion.div className="col-span-1" variants={fadeInUp}>
             <Card>
               <CardHeader>
@@ -130,7 +127,6 @@ export default function Umkm() {
             </Card>
           </motion.div>
 
-          {/* Pie Chart */}
           <motion.div className="col-span-1" variants={fadeInUp}>
             <Card>
               <CardHeader>
@@ -155,7 +151,6 @@ export default function Umkm() {
                         ))}
                       </Pie>
                       <Tooltip />
-                      {/* <Legend layout="vertical" align="right" verticalAlign="middle" /> */}
                     </PieChart>
                   </ResponsiveContainer>
                 </div>
@@ -164,7 +159,6 @@ export default function Umkm() {
           </motion.div>
         </motion.div>
 
-        {/* UMKM Cards Grid */}
         <motion.div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" variants={staggerChildren}>
           {UMKM_ITEMS.map((umkm) => (
             <Link key={umkm.id} href={`/umkm/${umkm.id}`}>

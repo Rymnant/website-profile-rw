@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { fadeInUp, staggerChildren } from "@/lib/utils";
 import Image from 'next/image';
 
-const GalleryPage: React.FC = () => {
+export default function GalleryPage(){
   const galleryItems = fetchGalleryItems();
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
@@ -25,7 +25,7 @@ const GalleryPage: React.FC = () => {
       animate="animate"
       variants={staggerChildren}
       className="container mx-auto px-4 py-8 max-w-10xl">
-      <motion.div {...fadeInUp} className="mb-12 mt-12 text-left">
+      <motion.div {...fadeInUp} className="mb-2 mt-2 text-left">
         <h1 className="text-4xl font-bold mb-2">Galeri</h1>
         <p className="text-muted-foreground">Kumpulan foto-foto kegiatan di RW06 Rejowinangun</p>
       </motion.div>
@@ -113,5 +113,3 @@ const GalleryPage: React.FC = () => {
     </motion.main>
   );
 };
-
-export default GalleryPage;

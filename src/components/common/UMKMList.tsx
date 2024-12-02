@@ -61,7 +61,7 @@ export function UMKMList({
                   <CardHeader className="p-0">
                     <div className="relative h-48 w-full">
                       <div className="absolute top-4 right-4">
-                        <Badge variant="secondary" className="bg-white/90 text-primary">
+                        <Badge variant="secondary" className="text-primary bg-gray-100 dark:bg-white dark:text-black">
                           {item.category}
                         </Badge>
                       </div>
@@ -69,13 +69,13 @@ export function UMKMList({
                   </CardHeader>
                   <CardContent className="p-4 space-y-4">
                     <h2 className="text-xl font-semibold line-clamp-1">{item.label}</h2>
-                    <p className="text-gray-600 text-sm line-clamp-2">{item.description}</p>
+                    <p className="text-gray-600 dark:text-white text-sm line-clamp-2">{item.description}</p>
                   </CardContent>
                   <CardFooter className="p-4 pt-0">
                     <div className="w-full flex justify-between items-center">
                       <div className="flex items-center gap-1 text-primary">
                         <Store className="h-4 w-4" />
-                        <span className="text-sm font-medium">Kunjungi Toko</span>
+                        <span className="text-sm font-medium">Hubungi Toko</span>
                       </div>
                     </div>
                   </CardFooter>

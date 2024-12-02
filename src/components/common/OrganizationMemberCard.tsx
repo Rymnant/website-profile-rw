@@ -13,7 +13,7 @@ const OrganizationMemberCard = ({ name, position, imageUrl }: OrganizationMember
         <Card className="flex flex-col items-center text-center">
             <CardHeader>
                 <Avatar className="h-24 w-24">
-                    <AvatarImage src={imageUrl} alt={name} />
+                    <AvatarImage src={imageUrl} alt={name} className='dark:bg-white dark:rounded-full'/>
                     <AvatarFallback>{name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                 </Avatar>
             </CardHeader>

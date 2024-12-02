@@ -43,7 +43,7 @@ export default function About() {
                                 Kawasan RW 06 merupakan salah satu wilayah pemukiman yang terletak di Kelurahan Rejowinangun, dengan struktur administratif yang terdiri dari 4 Rukun Tetangga (RT) di dalamnya.
                             </motion.p>
                             <motion.p variants={fadeInUp}>
-                            Setiap RT memiliki karakteristik tersendiri, mencerminkan keragaman aktivitas masyarakat yang menghuni kawasan ini. Wilayah ini didominasi oleh hunian keluarga dengan lingkungan yang rapi dan tertata baik, menciptakan suasana yang nyaman dan harmonis bagi para penduduknya.
+                                Setiap RT memiliki karakteristik tersendiri, mencerminkan keragaman aktivitas masyarakat yang menghuni kawasan ini. Wilayah ini didominasi oleh hunian keluarga dengan lingkungan yang rapi dan tertata baik, menciptakan suasana yang nyaman dan harmonis bagi para penduduknya.
                             </motion.p>
                         </motion.div>
                         <motion.div

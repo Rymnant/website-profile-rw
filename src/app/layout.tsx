@@ -2,8 +2,8 @@ import './globals.css'
 import ThemeWrapper from '@/components/layout/theme-wrapper'
 
 export const metadata = {
-  title: 'RW06 Rejowinangun',
-  description: 'Ini adalah website RW06 Rejowinangun',
+  title: 'Website RW 06 Rejowinangun',
+  description: 'Website resmi RW 06 Rejowinangun',
 }
 
 export default function RootLayout({

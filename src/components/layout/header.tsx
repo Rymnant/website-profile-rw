@@ -55,7 +55,7 @@ export default function Header() {
                                 >
                                     <div className="py-2 bg-white dark:bg-black" role="menu" aria-orientation="vertical">
                                         {item.dropdown.map((subItem) => (
-                                            <Link key={subItem.label} href={subItem.link!} className="block hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors duration-150" role="menuitem" onClick={handleLinkClick}>
+                                            <Link key={subItem.label} href={subItem.link!} className="block hover:bg-transparent dark:hover:bg-gray-900 transition-colors duration-150" role="menuitem" onClick={handleLinkClick}>
                                                 <div className="flex p-4 items-start">
                                                     <div className="flex-shrink-0 h-10 w-10 rounded bg-gray-100 dark:bg-white flex items-center justify-center">
                                                         {subItem.label === 'Profil' && <Clock className="h-5 w-5 text-gray-600 dark:text-black" />}
@@ -123,14 +123,14 @@ export default function Header() {
                                             animate={{ opacity: 1, x: 0 }}
                                             transition={{ duration: 0.3 }}
                                         >
-                                            <Link href={item.link} className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-white hover:text-white hover:bg-gray-900" onClick={handleLinkClick}>{item.label}</Link>
+                                            <Link href={item.link} className="block px-3 py-2 text-base font-medium text-gray-700 dark:text-white hover:bg-transparent dark:hover:bg-gray-900" onClick={handleLinkClick}>{item.label}</Link>
                                         </motion.div>
                                     }
                                     {item.dropdown && (
                                         <>
                                             <motion.button
                                                 onClick={() => toggleMobileDropdown(item.label)}
-                                                className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 dark:text-white hover:text-white hover:bg-gray-900"
+                                                className="w-full text-left px-3 py-2 text-base font-medium text-gray-700 dark:text-white hover:bg-transparent dark:hover:bg-gray-900"
                                                 aria-expanded={activeDropdown === item.label}
                                                 initial={{ opacity: 0, x: -20 }}
                                                 animate={{ opacity: 1, x: 0 }}

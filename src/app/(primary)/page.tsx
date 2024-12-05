@@ -6,7 +6,7 @@ import { useRef } from "react"
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { HERO_PROPS, INFORMATION_PROPS, NEWS_PROPS } from "@/lib/constants"
+import { HERO_PROPS, INFORMATION_PROPS, NEWS_ARTICLES } from "@/lib/constants"
 import { motion } from "framer-motion"
 import { fadeInUp, staggerChildren } from "@/lib/utils"
 
@@ -139,7 +139,7 @@ export default function HomePage() {
                             ref={scrollContainerRef}
                             className="flex gap-4 sm:gap-6 overflow-x-auto scroll-smooth pb-4 no-scrollbar"
                         >
-                            {NEWS_PROPS.map((item) => (
+                            {NEWS_ARTICLES.map((item) => (
                                 <motion.div
                                     key={item.id}
                                     variants={fadeInUp}
@@ -157,16 +157,16 @@ export default function HomePage() {
                                                 </div>
                                                 <div className="space-y-1 sm:space-y-2">
                                                     <time className="text-xs sm:text-sm text-muted-foreground">
-                                                        {item.date}
+                                                        {item.date.toString()}
                                                     </time>
                                                     <h3 className="text-sm sm:text-base font-semibold leading-tight">
                                                         {item.title}
                                                     </h3>
                                                     <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2">
-                                                        {item.excerpt}
+                                                        {item.description}
                                                     </p>
                                                     <Link
-                                                        href={item.href}
+                                                        href={item.link}
                                                         className="text-xs sm:text-sm text-blue-500 hover:text-blue-700 inline-flex items-center"
                                                     >
                                                         Selengkapnya →

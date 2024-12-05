@@ -30,28 +30,18 @@ export interface InformationSectionProps {
   href: string
 }
 
-// Define the news item props
-export interface NewsItem {
-  id: string
-  date: string
-  title: string
-  excerpt: string
-  imageUrl: string
-  href: string
-}
-
 // Define the news article props
 export type NewsArticle = {
-  id: string
-  title: string
-  description: string
-  category: string
-  author: string
-  date: string
-  readTime: string
-  imageUrl: string
-  link: string
-}
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  author: string;
+  date: Date;
+  readTime: string;
+  imageUrl: string;
+  link: string;
+};
 
 // Define the footer props
 export interface FooterLink {
@@ -99,7 +89,7 @@ export type OrganizationMember = {
 export type UMKM = {
   id: string;
   label: string;
-  category: string; // Add this line
+  category: string;
   description: string;
   link?: string;
 };

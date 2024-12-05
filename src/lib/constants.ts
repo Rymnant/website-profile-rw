@@ -46,58 +46,6 @@ export const INFORMATION_PROPS = [
     { title: 'Hubungi Kami', description: 'Hubungi kami untuk informasi lebih lanjut', href: '/contact' },
 ];
 
-// Define the news item props
-export const NEWS_PROPS = [
-    {
-        id: '1',
-        date: '2021-10-01',
-        title: 'Pembangunan Pos Kamling',
-        excerpt: 'Pembangunan pos kamling di RW06 Rejowinangun telah selesai dilakukan',
-        imageUrl: '/img/hero-background_1.png',
-        href: '/news/1'
-    },
-    {
-        id: '2',
-        date: '2021-10-02',
-        title: 'Pengumuman PPKM',
-        excerpt: 'Pengumuman terkait PPKM di RW06 Rejowinangun',
-        imageUrl: '/img/hero-background_1.png',
-        href: '/news/2'
-    },
-    {
-        id: '3',
-        date: '2021-10-03',
-        title: 'Pembagian Sembako',
-        excerpt: 'Pembagian sembako di RW06 Rejowinangun telah selesai dilakukan',
-        imageUrl: '/img/hero-background_1.png',
-        href: '/news/3'
-    },
-    {
-        id: '4',
-        date: '2021-10-04',
-        title: 'Pembangunan Jalan',
-        excerpt: 'Pembangunan jalan di RW06 Rejowinangun telah selesai dilakukan',
-        imageUrl: '/img/hero-background_1.png',
-        href: '/news/4'
-    },
-    {
-        id: '5',
-        date: '2021-10-05',
-        title: 'Pengumuman Banjir',
-        excerpt: 'Pengumuman terkait siaga banjir di RW06 Rejowinangun',
-        imageUrl: '/img/hero-background_1.png',
-        href: '/news/5'
-    },
-    {
-        id: '6',
-        date: '2021-10-06',
-        title: 'Pembangunan Taman',
-        excerpt: 'Pembangunan taman di RW06 Rejowinangun telah selesai dilakukan',
-        imageUrl: '/img/hero-background_1.png',
-        href: '/news/6'
-    }
-];
-
 // Data dummy untuk artikel berita
 export const NEWS_ARTICLES: NewsArticle[] = [
     {
@@ -106,7 +54,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
         description: "Kegiatan Posyandu di RW06 Rejowinangun",
         category: "Kesehatan",
         author: "Admin 1",
-        date: "2021-10-01",
+        date: new Date("2021-10-01"),
         readTime: "5 min",
         imageUrl: "/img/hero-background_1.png",
         link: "/news/1",
@@ -117,7 +65,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
         description: "Pembangunan pos kamling di RW06 Rejowinangun",
         category: "Infrastruktur",
         author: "Admin 1",
-        date: "2021-10-01",
+        date: new Date("2021-10-01"),
         readTime: "5 min",
         imageUrl: "/img/hero-background_1.png",
         link: "/news/2",
@@ -128,7 +76,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
         description: "Pengumuman terkait PPKM di RW06 Rejowinangun",
         category: "Pengumuman",
         author: "Admin 1",
-        date: "2021-10-02",
+        date: new Date("2021-10-02"),
         readTime: "5 min",
         imageUrl: "/img/hero-background_1.png",
         link: "/news/3",
@@ -139,7 +87,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
         description: "Pembagian sembako di RW06 Rejowinangun telah selesai dilakukan",
         category: "Sosial",
         author: "Admin 1",
-        date: "2021-10-03",
+        date: new Date("2021-10-03"),
         readTime: "5 min",
         imageUrl: "/img/hero-background_1.png",
         link: "/news/4",
@@ -150,7 +98,7 @@ export const NEWS_ARTICLES: NewsArticle[] = [
         description: "Pembangunan jalan di RW06 Rejowinangun telah selesai dilakukan",
         category: "Infrastruktur",
         author: "Admin 1",
-        date: "2021-10-04",
+        date: new Date("2021-10-04"),
         readTime: "5 min",
         imageUrl: "/img/hero-background_1.png",
         link: "/news/5",
@@ -165,7 +113,6 @@ export const ORGANIZATION_MEMBER: OrganizationMember[] = [
     { name: "Dewi Lestari", position: "Bendahara RW", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
     { name: "Joko Widodo", position: "Ketua RT 01", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
     { name: "Mega Wati", position: "Ketua RT 02", imageUrl: "/icon/icon-transformed.png?height=100&width=100" },
-    // Tambahkan anggota lainnya sesuai kebutuhan
 ];
 
 // Data UMKM

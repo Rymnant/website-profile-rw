@@ -33,7 +33,7 @@ const NewsCard = ({ article }: { article: NewsArticle }) => (
       <CardFooter className="flex flex-col sm:flex-row justify-between items-start sm:items-center p-4 border-t space-y-2 sm:space-y-0">
         <div className="flex items-center space-x-2 text-xs md:text-sm text-muted-foreground">
           <CalendarIcon className="w-3 h-3 md:w-4 md:h-4" />
-          <span>{article.date}</span>
+          <span>{article.date.toLocaleDateString()}</span>
           <ClockIcon className="w-3 h-3 md:w-4 md:h-4 ml-2" />
           <span>{article.readTime}</span>
         </div>

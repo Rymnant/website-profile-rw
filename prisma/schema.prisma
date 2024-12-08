@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  email     String @unique
+  name      String
+  password  String
+  role      String @default("ADMIN")
+  @@map("admins")
+}
+
+model NewsArticle {
+  id          String   @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  description String
+  category    String
+  author      String
+  date        DateTime
+  imageUrl    String?
+  link        String
+  @@index([category])
+  @@map("news_articles")
+}
+
+model OrganizationMember {
+  id        String @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  position  String
+  imageUrl  String?
+  @@map("organization_members")
+}
+
+model UMKMItem {
+  id          String @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  title       String
+  items       UMKM[]
+  @@map("umkm_items")
+}
+
+model UMKM {
+  id          String @id @default(uuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  label       String
+  category    String
+  description String
+  link        String?
+  imageUrl    String?
+  umkmItemId  String
+  umkmItem    UMKMItem @relation(fields: [umkmItemId], references: [id])
+  @@index([category])
+  @@map("umkms")
+}

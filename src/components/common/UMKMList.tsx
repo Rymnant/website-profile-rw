@@ -2,25 +2,26 @@ import { UMKMItem } from "@/lib/types"
 import { ITEMS_PER_PAGE } from "@/lib/constants"
 import { Pagination } from "./Pagination"
 import Link from "next/link"
+import Image from "next/image"
 import { Store } from 'lucide-react'
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card"
 import { motion } from 'framer-motion'
 
-export function UMKMList({ 
-  umkm, 
-  currentPage, 
-  setCurrentPage, 
-  rtId 
-}: { 
-  umkm: UMKMItem, 
-  currentPage: number, 
-  setCurrentPage: (page: number) => void, 
-  rtId: string | null 
+export function UMKMList({
+  umkm,
+  currentPage,
+  setCurrentPage,
+  rtId
+}: {
+  umkm: UMKMItem,
+  currentPage: number,
+  setCurrentPage: (page: number) => void,
+  rtId: string | null
 }) {
   const totalPages = Math.ceil((umkm.items?.length || 0) / ITEMS_PER_PAGE)
   const paginatedItems = umkm.items?.slice(
-    (currentPage - 1) * ITEMS_PER_PAGE, 
+    (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   )
 
@@ -60,6 +61,15 @@ export function UMKMList({
                 <Card className="overflow-hidden h-full">
                   <CardHeader className="p-0">
                     <div className="relative h-48 w-full">
+
+                      {/* Ntar diubah bang */}
+                      
+                      <Image
+                        src="/icon/icon-transformed.png"
+                        layout="fill"
+                        objectFit="cover"
+                        alt="UMKM Item Image"
+                      />
                       <div className="absolute top-4 right-4">
                         <Badge variant="secondary" className="text-primary bg-black text-white dark:bg-white dark:text-black">
                           {item.category}
@@ -92,8 +102,8 @@ export function UMKMList({
           totalPages={totalPages}
           onPageChange={setCurrentPage}
         />
-        <Link 
-          href="/umkm" 
+        <Link
+          href="/umkm"
           className="text-primary hover:text-primary/80 font-medium"
         >
           Kembali ke halaman utama

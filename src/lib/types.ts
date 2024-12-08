@@ -38,7 +38,6 @@ export type NewsArticle = {
   category: string;
   author: string;
   date: Date;
-  readTime: string;
   imageUrl: string;
   link: string;
 };

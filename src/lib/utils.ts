@@ -15,56 +15,48 @@ export const fetchGalleryItems = (): GalleryItem[] => [
     title: 'Kunjungan Daerah',
     description: 'Kunjungan dari daerah ke daerah lain untuk mempererat hubungan',
     imageUrl: '/img/hero-background_1.png?height=300&width=400',
-    tags: ['Kunjungan', 'Daerah', 'Hubungan']
   },
   {
     id: '2',
     title: 'Panen Lorong Sayur',
     description: 'Panen berbagai jenis sayuran di lorong sayur',
     imageUrl: '/img/hero-background_1.png?height=300&width=400',
-    tags: ['Panen', 'Sayur', 'Lorong']
   },
   {
     id: '3',
     title: 'Pembangunan Jalan',
     description: 'Pembangunan jalan baru di daerah tertentu',
     imageUrl: '/img/hero-background_1.png?height=300&width=400',
-    tags: ['Pembangunan', 'Jalan', 'Baru']
   },
   {
     id: '4',
     title: 'Kunjungan Daerah',
     description: 'Kunjungan dari daerah ke daerah lain untuk mempererat hubungan',
     imageUrl: '/img/hero-background_1.png?height=300&width=400',
-    tags: ['Kunjungan', 'Daerah', 'Hubungan']
   },
   {
     id: '5',
     title: 'Panen Lorong Sayur',
     description: 'Panen berbagai jenis sayuran di lorong sayur',
     imageUrl: '/img/hero-background_1.png?height=300&width=400',
-    tags: ['Panen', 'Sayur', 'Lorong']
   },
   {
     id: '6',
     title: 'Pembangunan Jalan',
     description: 'Pembangunan jalan baru di daerah tertentu',
     imageUrl: '/img/hero-background_1.png?height=300&width=400',
-    tags: ['Pembangunan', 'Jalan', 'Baru']
   },
   {
     id: '7',
     title: 'Kunjungan Daerah',
     description: 'Kunjungan dari daerah ke daerah lain untuk mempererat hubungan',
     imageUrl: '/img/hero-background_1.png?height=300&width=400',
-    tags: ['Kunjungan', 'Daerah', 'Hubungan']
   },
   {
     id: '8',
     title: 'Panen Lorong Sayur',
     description: 'Panen berbagai jenis sayuran di lorong sayur',
     imageUrl: '/img/hero-background_1.png?height=300&width=400',
-    tags: ['Panen', 'Sayur', 'Lorong']
   }
 ];
 

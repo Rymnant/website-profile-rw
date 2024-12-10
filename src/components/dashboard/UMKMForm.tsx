@@ -56,7 +56,7 @@ export function UMKMForm() {
       <Input {...register("category")} placeholder="Category" required />
       <Textarea {...register("description")} placeholder="Description" required />
       <Input {...register("link")} placeholder="Link" />
-      <Input {...register("imageUrl")} placeholder="Image URL" />
+      <Input {...register("image")} placeholder="Image URL" />
       <Select 
         onValueChange={(value) => setValue("umkmItemId", value)} 
         value={watch("umkmItemId")}

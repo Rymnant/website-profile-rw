@@ -35,11 +35,9 @@ export type NewsArticle = {
   id: string;
   title: string;
   description: string;
-  category: string;
   author: string;
   date: Date;
   imageUrl: string;
-  link: string;
 };
 
 // Define the footer props
@@ -67,14 +65,12 @@ export interface GalleryItem {
   title: string;
   description: string;
   imageUrl: string;
-  tags: string[];
 }
 
 export interface GalleryCardProps {
   title: string;
   description: string;
   imageUrl: string;
-  tags: string[];
 }
 
 // Define the organization member

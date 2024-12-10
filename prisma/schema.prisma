@@ -33,12 +33,8 @@ model NewsArticle {
   updatedAt   DateTime @updatedAt
   title       String
   description String
-  category    String
-  author      String
   date        DateTime
-  imageUrl    String?
-  link        String
-  @@index([category])
+  image       String?
   @@map("news_articles")
 }
 
@@ -48,7 +44,7 @@ model OrganizationMember {
   updatedAt DateTime @updatedAt
   name      String
   position  String
-  imageUrl  String?
+  image     String?
   @@map("organization_members")
 }
 
@@ -69,7 +65,7 @@ model UMKM {
   category    String
   description String
   link        String?
-  imageUrl    String?
+  image       String?
   umkmItemId  String
   umkmItem    UMKMItem @relation(fields: [umkmItemId], references: [id])
   @@index([category])

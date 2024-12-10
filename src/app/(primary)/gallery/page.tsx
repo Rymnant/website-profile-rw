@@ -6,7 +6,6 @@ import { fetchGalleryItems } from "@/lib/utils";
 import GalleryCard from "@/components/common/GalleryCard";
 import { Pagination } from "@/components/common/Pagination";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { fadeInUp, staggerChildren } from "@/lib/utils";
 import Image from 'next/image';
 
@@ -83,11 +82,11 @@ export default function GalleryPage(){
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-lg overflow-hidden max-w-2xl w-full"
+              className="bg-white rounded-lg overflow-hidden w-full max-w-2xl md:max-w-3xl lg:max-w-4xl lg:w-3/4"
             >
               <Card className="w-full">
                 <CardHeader className="p-0">
-                  <div className="relative h-64 w-full">
+                  <div className="relative h-80 lg:h-96 w-full">
                     <Image
                       src={selectedItem.imageUrl}
                       alt={selectedItem.title}
@@ -99,11 +98,6 @@ export default function GalleryPage(){
                 <CardContent className="p-6">
                   <CardTitle className="text-2xl font-semibold mb-4">{selectedItem.title}</CardTitle>
                   <CardDescription className="text-base text-gray-600 mb-6">{selectedItem.description}</CardDescription>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedItem.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary">{tag}</Badge>
-                    ))}
-                  </div>
                 </CardContent>
               </Card>
             </motion.div>

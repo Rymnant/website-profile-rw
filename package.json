@@ -29,6 +29,7 @@
     "leaflet": "^1.9.4",
     "lucide-react": "^0.454.0",
     "maplibre-gl": "^4.7.1",
+    "mime": "^4.0.4",
     "motion": "^11.12.0",
     "next": "15.0.1",
     "next-connect": "^1.0.0",
@@ -44,6 +45,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/mime": "^3.0.4",
     "@types/node": "^20",
     "@types/pg": "^8.11.10",
     "@types/react": "^18",

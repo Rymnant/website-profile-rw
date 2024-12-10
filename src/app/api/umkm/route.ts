@@ -2,7 +2,7 @@ import { NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
 
 const prisma = new PrismaClient()
-export const revalidate = 1
+export const revalidate = 60
 
 export async function GET() {
   try {

@@ -166,7 +166,7 @@ export default function HomePage() {
                                                         {item.description}
                                                     </p>
                                                     <Link
-                                                        href={item.link}
+                                                        href="#"
                                                         className="text-xs sm:text-sm text-blue-500 hover:text-blue-700 inline-flex items-center"
                                                     >
                                                         Selengkapnya →

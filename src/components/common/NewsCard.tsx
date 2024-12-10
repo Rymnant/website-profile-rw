@@ -1,5 +1,4 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { CalendarIcon } from 'lucide-react'
 import Image from "next/image"
@@ -26,7 +25,6 @@ const NewsCard = ({ article }: { article: NewsArticle }) => (
         </div>
       </CardHeader>
       <CardContent className="flex-grow p-4">
-        <Badge className="mb-2">{article.category}</Badge>
         <CardTitle className="text-lg md:text-xl mb-2 line-clamp-2">{article.title}</CardTitle>
         <CardDescription className="text-sm line-clamp-3">{article.description}</CardDescription>
       </CardContent>
@@ -36,7 +34,7 @@ const NewsCard = ({ article }: { article: NewsArticle }) => (
           <span>{article.date.toLocaleDateString()}</span>
         </div>
         <Button size="sm" asChild>
-          <Link href={article.link}>Baca Selengkapnya</Link>
+          <Link href="#">Baca Selengkapnya</Link>
         </Button>
       </CardFooter>
     </Card>

@@ -30,7 +30,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       year: "numeric",
       month: "2-digit",
       day: "2-digit"
-    }).replace(/\//g, "-")}/news/`;
+    }).replace(/\//g, "-")}/news`;
 
   const uploadDir = join(process.cwd(), "public", relativeUploadDir);
 

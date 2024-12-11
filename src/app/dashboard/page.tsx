@@ -3,13 +3,13 @@
 import { useState, useEffect, useCallback } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Button } from "@/components/ui/button"
-import { NewsArticleForm } from "@/components/dashboard/NewsArticleForm"
-import { OrganizationMemberForm } from "@/components/dashboard/OrganizationMemberForm"
-import { UMKMForm } from "@/components/dashboard/UMKMForm"
-import { UMKMItemForm } from "@/components/dashboard/UMKMItemForm"
+import { NewsArticleForm } from "@/components/dashboard/form/NewsArticleForm"
+import { OrganizationMemberForm } from "@/components/dashboard/form/OrganizationMemberForm"
+import { UMKMForm } from "@/components/dashboard/form/UMKMForm"
+import { UMKMItemForm } from "@/components/dashboard/form/UMKMItemForm"
 import { DataTable } from "@/components/dashboard/DataTable"
 
-const AUTO_REFRESH_INTERVAL = 30000 // 30 seconds
+const AUTO_REFRESH_INTERVAL = 30000
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState("news")
@@ -28,7 +28,9 @@ export default function Dashboard() {
     <div className="container mx-auto p-4">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Dashboard</h1>
-        <Button onClick={refreshData}>Refresh Data</Button>
+        <div>
+          <Button onClick={refreshData}>Refresh Data</Button>
+        </div>
       </div>
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList>

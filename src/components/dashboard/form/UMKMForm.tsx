@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { toast } from "@/hooks/use-toast"
 import { UMKMItem, UMKM } from "@prisma/client"
+import { onSubmitUMKM, fetchUMKMItems } from "@/components/dashboard/handler/umkmHandlers"
 
 export function UMKMForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -15,39 +15,16 @@ export function UMKMForm() {
   const { register, handleSubmit, reset, setValue, watch } = useForm<UMKM>()
 
   useEffect(() => {
-    const fetchUMKMItems = async () => {
-      try {
-        const response = await fetch("/api/umkmitem")
-        if (response.ok) {
-          const items = await response.json()
-          setUmkmItems(items)
-        }
-      } catch (error) {
-        console.error("Failed to fetch UMKM Items", error)
-      }
+    const loadUMKMItems = async () => {
+      const items = await fetchUMKMItems()
+      setUmkmItems(items)
     }
-    fetchUMKMItems()
+    loadUMKMItems()
   }, [])
 
   const onSubmit = async (data: UMKM) => {
     setIsLoading(true)
-    try {
-      const response = await fetch("/api/umkm", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      })
-      if (response.ok) {
-        toast({ title: "UMKM created successfully" })
-        reset()
-      } else {
-        throw new Error("Failed to create UMKM")
-      }
-    } catch (error) {
-      toast({ title: "Error", description: (error as Error).message, variant: "destructive" })
-    } finally {
-      setIsLoading(false)
-    }
+    await onSubmitUMKM(data, reset, setIsLoading)
   }
 
   return (
@@ -56,7 +33,7 @@ export function UMKMForm() {
       <Input {...register("category")} placeholder="Category" required />
       <Textarea {...register("description")} placeholder="Description" required />
       <Input {...register("link")} placeholder="Link" />
-      <Input {...register("image")} placeholder="Image URL" />
+      <Input type="file" {...register("image")} placeholder="Image" required />
       <Select 
         onValueChange={(value) => setValue("umkmItemId", value)} 
         value={watch("umkmItemId")}

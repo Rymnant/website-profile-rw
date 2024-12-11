@@ -5,8 +5,8 @@ import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/hooks/use-toast"
 import { NewsArticle } from "@prisma/client"
+import { onSubmitNewsArticle } from "@/components/dashboard/handler/newsHandlers"
 
 export function NewsArticleForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -14,30 +14,8 @@ export function NewsArticleForm() {
 
   const onSubmit = async (data: NewsArticle) => {
     setIsLoading(true)
-    const formData = new FormData()
-    formData.append("title", data.title)
-    formData.append("description", data.description)
-    formData.append("date", new Date(data.date).toISOString())
-    if (data.image && data.image[0]) {
-      formData.append("image", data.image[0])
-    }
-
-    try {
-      const response = await fetch("/api/news", {
-        method: "POST",
-        body: formData,
-      })
-      if (response.ok) {
-        toast({ title: "News article created successfully" })
-        reset()
-      } else {
-        throw new Error("Failed to create news article")
-      }
-    } catch (error) {
-      toast({ title: "Error", description: (error as Error).message, variant: "destructive" })
-    } finally {
-      setIsLoading(false)
-    }
+    const token = localStorage.getItem('token') || '';
+    await onSubmitNewsArticle(data, reset, setIsLoading, token)
   }
 
   return (

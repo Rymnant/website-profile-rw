@@ -24,6 +24,7 @@ model Admin {
   name      String
   password  String
   role      String @default("ADMIN")
+  token     String @unique
   @@map("admins")
 }
 

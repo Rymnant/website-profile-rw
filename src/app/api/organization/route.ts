@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
 import { join } from "path"
-import mime from "mime";
-import { stat, mkdir, writeFile } from "fs/promises";
+import mime from "mime"
+import { stat, mkdir, writeFile, unlink } from "fs/promises"
 
 const prisma = new PrismaClient()
 export const revalidate = 60
 
-export async function GET(): Promise<NextResponse> {
+export async function GET(){
   try {
     const organizationMembers = await prisma.organizationMember.findMany()
     return NextResponse.json(organizationMembers)
@@ -62,6 +62,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
     const filename = `${image.name.replace(
       /\.[^/.]+$/,
+
       ""
     )}-${uniqueSuffix}.${mime.getExtension(image.type)}`;
     await writeFile(`${uploadDir}/${filename}`, buffer);
@@ -79,5 +80,34 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       { error: "Something went wrong." },
       { status: 500 }
     );
+  }
+}
+
+export async function DELETE(request: NextRequest): Promise<NextResponse> {
+  const { id } = await request.json();
+  try {
+    const organizationMember = await prisma.organizationMember.findUnique({
+      where: { id },
+    });
+
+    if (!organizationMember) {
+      return NextResponse.json(
+        { error: "Organization member not found" },
+        { status: 404 }
+      );
+    }
+
+    if (organizationMember.image) {
+      const filePath = join(process.cwd(), "public", organizationMember.image);
+      await unlink(filePath).catch((err) => {
+        console.error("Failed to delete file:", err);
+      });
+    }
+
+    await prisma.organizationMember.delete({ where: { id } });
+    return NextResponse.json({ message: "Organization member deleted successfully" });
+  } catch (e: unknown) {
+    console.error("Error while trying to delete organization member\n", e);
+    return NextResponse.json({ error: "Failed to delete organization member" }, { status: 500 });
   }
 }

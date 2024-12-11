@@ -18,7 +18,7 @@ export function DataTable({ model }: DataTableProps) {
     const fetchData = async () => {
       setIsLoading(true)
       try {
-        const response = await fetch(`/api/${model.toLowerCase()}`)
+        const response = await fetch(`/api/${model.toLowerCase()}`);
         if (response.ok) {
           const result = await response.json()
           setData(result)
@@ -34,6 +34,25 @@ export function DataTable({ model }: DataTableProps) {
 
     fetchData()
   }, [model])
+
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch(`/api/${model.toLowerCase()}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      });
+      if (response.ok) {
+        setData(data.filter(item => item.id !== id));
+      } else {
+        throw new Error(`Failed to delete ${model} data`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -60,6 +79,9 @@ export function DataTable({ model }: DataTableProps) {
             {columns.map((column) => (
               <TableCell key={column}>{row[column]}</TableCell>
             ))}
+            <TableCell>
+              <button onClick={() => handleDelete(row.id)}>Delete</button>
+            </TableCell>
           </TableRow>
         ))}
       </TableBody>

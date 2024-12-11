@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
 import { join } from "path"
-import mime from "mime";
-import { stat, mkdir, writeFile } from "fs/promises";
+import mime from "mime"
+import { stat, mkdir, writeFile, unlink } from "fs/promises"
 
 const prisma = new PrismaClient()
 export const revalidate = 60
 
-export async function GET(): Promise<NextResponse> {
+export async function GET(){
   try {
     const newsArticles = await prisma.newsArticle.findMany()
     return NextResponse.json(newsArticles)
@@ -64,6 +64,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
     const filename = `${image.name.replace(
       /\.[^/.]+$/,
+
       ""
     )}-${uniqueSuffix}.${mime.getExtension(image.type)}`;
     await writeFile(`${uploadDir}/${filename}`, buffer);
@@ -79,6 +80,42 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     console.error("Error while trying to upload a file\n", e);
     return NextResponse.json(
       { error: "Something went wrong." },
+      { status: 500 }
+    );
+  }
+}
+
+export async function DELETE(request: NextRequest): Promise<NextResponse> {
+  try {
+    const { id } = await request.json();
+
+    const newsArticle = await prisma.newsArticle.findUnique({
+      where: { id },
+    });
+
+    if (!newsArticle) {
+      return NextResponse.json(
+        { error: "News article not found" },
+        { status: 404 }
+      );
+    }
+
+    if (newsArticle.image) {
+      const filePath = join(process.cwd(), "public", newsArticle.image);
+      await unlink(filePath).catch((err) => {
+        console.error("Failed to delete file:", err);
+      });
+    }
+
+    await prisma.newsArticle.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ message: "Article deleted successfully" });
+  } catch (error) {
+    console.error("Failed to delete article:", error);
+    return NextResponse.json(
+      { error: "Failed to delete article" },
       { status: 500 }
     );
   }

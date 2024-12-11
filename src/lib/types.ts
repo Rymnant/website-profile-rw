@@ -67,12 +67,6 @@ export interface GalleryItem {
   imageUrl: string;
 }
 
-export interface GalleryCardProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-}
-
 // Define the organization member
 export type OrganizationMember = {
   name: string;

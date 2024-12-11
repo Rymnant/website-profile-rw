@@ -1,8 +1,5 @@
-import { HeaderNavItem } from '@/lib/types';
 import * as z from "zod";
-import { NewsArticle } from '@/lib/types';
-import { OrganizationMember } from '@/lib/types';
-import { UMKMItem } from '@/lib/types';
+import { HeaderNavItem, NewsArticle, OrganizationMember, UMKMItem, GalleryItem } from '@/lib/types';
 
 // Define the navigation items
 export const HEADER_NAV_ITEMS: HeaderNavItem[] = [
@@ -175,6 +172,58 @@ export const UMKM_ITEMS: UMKMItem[] = [
         ]
     }
 ];
+
+// Data galeri
+export const GALLERY_ITEMS: GalleryItem[] = [
+    {
+      id: '1',
+      title: 'Kunjungan Daerah',
+      description: 'Kunjungan dari daerah ke daerah lain untuk mempererat hubungan',
+      imageUrl: '/img/hero-background_1.png?height=300&width=400',
+    },
+    {
+      id: '2',
+      title: 'Panen Lorong Sayur',
+      description: 'Panen berbagai jenis sayuran di lorong sayur',
+      imageUrl: '/img/hero-background_1.png?height=300&width=400',
+    },
+    {
+      id: '3',
+      title: 'Pembangunan Jalan',
+      description: 'Pembangunan jalan baru di daerah tertentu',
+      imageUrl: '/img/hero-background_1.png?height=300&width=400',
+    },
+    {
+      id: '4',
+      title: 'Kunjungan Daerah',
+      description: 'Kunjungan dari daerah ke daerah lain untuk mempererat hubungan',
+      imageUrl: '/img/hero-background_1.png?height=300&width=400',
+    },
+    {
+      id: '5',
+      title: 'Panen Lorong Sayur',
+      description: 'Panen berbagai jenis sayuran di lorong sayur',
+      imageUrl: '/img/hero-background_1.png?height=300&width=400',
+    },
+    {
+      id: '6',
+      title: 'Pembangunan Jalan',
+      description: 'Pembangunan jalan baru di daerah tertentu',
+      imageUrl: '/img/hero-background_1.png?height=300&width=400',
+    },
+    {
+      id: '7',
+      title: 'Kunjungan Daerah',
+      description: 'Kunjungan dari daerah ke daerah lain untuk mempererat hubungan',
+      imageUrl: '/img/hero-background_1.png?height=300&width=400',
+    },
+    {
+      id: '8',
+      title: 'Panen Lorong Sayur',
+      description: 'Panen berbagai jenis sayuran di lorong sayur',
+      imageUrl: '/img/hero-background_1.png?height=300&width=400',
+    }
+  ];
 
 // Define the number of items per page for pagination
 export const ITEMS_PER_PAGE = 6;

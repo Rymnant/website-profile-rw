@@ -1,13 +1,14 @@
 "use client"
 
+/* eslint-disable */
 import { useEffect, useState } from "react"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
+import { fetchData, deleteData } from "@/lib/utils"
 
 type DataTableProps = {
   model: string;
 }
 
-/* eslint-disable */
 type DataItem = Record<string, any>;
 
 export function DataTable({ model }: DataTableProps) {
@@ -15,44 +16,28 @@ export function DataTable({ model }: DataTableProps) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    const fetchData = async () => {
+    const loadData = async () => {
       setIsLoading(true)
       try {
-        const response = await fetch(`/api/${model.toLowerCase()}`);
-        if (response.ok) {
-          const result = await response.json()
-          setData(result)
-        } else {
-          throw new Error(`Failed to fetch ${model} data`)
-        }
+        const result = await fetchData(model)
+        setData(result)
       } catch (error) {
         console.error(error)
       } finally {
         setIsLoading(false)
       }
     }
-
-    fetchData()
+    loadData()
   }, [model])
 
   const handleDelete = async (id: string) => {
     try {
-      const response = await fetch(`/api/${model.toLowerCase()}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id }),
-      });
-      if (response.ok) {
-        setData(data.filter(item => item.id !== id));
-      } else {
-        throw new Error(`Failed to delete ${model} data`);
-      }
+      await deleteData(model, id)
+      setData(data.filter(item => item.id !== id))
     } catch (error) {
-      console.error(error);
+      console.error(error)
     }
-  };
+  }
 
   if (isLoading) {
     return <div>Loading...</div>

@@ -7,6 +7,8 @@ import { NewsArticleForm } from "@/components/dashboard/form/NewsArticleForm"
 import { OrganizationMemberForm } from "@/components/dashboard/form/OrganizationMemberForm"
 import { UMKMForm } from "@/components/dashboard/form/UMKMForm"
 import { UMKMItemForm } from "@/components/dashboard/form/UMKMItemForm"
+import { AdminForm } from "@/components/dashboard/form/AdminForm"
+import { GalleryForm } from "@/components/dashboard/form/GalleryForm"
 import { DataTable } from "@/components/dashboard/DataTable"
 
 const AUTO_REFRESH_INTERVAL = 30000
@@ -34,11 +36,17 @@ export default function Dashboard() {
       </div>
       <Tabs value={activeTab} onValueChange={setActiveTab}>
         <TabsList>
+          <TabsTrigger value="admins">Admins</TabsTrigger>
           <TabsTrigger value="news">News Articles</TabsTrigger>
           <TabsTrigger value="members">Organization Members</TabsTrigger>
           <TabsTrigger value="umkmItems">UMKM Items</TabsTrigger>
           <TabsTrigger value="umkm">UMKM</TabsTrigger>
+          <TabsTrigger value="gallery">Gallery</TabsTrigger>
         </TabsList>
+        <TabsContent value="admins">
+          <AdminForm />
+          <DataTable key={`admins-${refreshKey}`} model="Admin" />
+        </TabsContent>
         <TabsContent value="news">
           <NewsArticleForm />
           <DataTable key={`news-${refreshKey}`} model="News" />
@@ -55,8 +63,11 @@ export default function Dashboard() {
           <UMKMForm />
           <DataTable key={`umkm-${refreshKey}`} model="UMKM" />
         </TabsContent>
+        <TabsContent value="gallery">
+          <GalleryForm />
+          <DataTable key={`gallery-${refreshKey}`} model="Gallery" />
+        </TabsContent>
       </Tabs>
     </div>
   )
 }
-

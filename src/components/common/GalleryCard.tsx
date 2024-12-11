@@ -2,9 +2,13 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import type { GalleryCardProps } from "@/lib/types";
+import type { GalleryItem } from "@/lib/types";
 
-const GalleryCard: React.FC<GalleryCardProps & { onClick: () => void }> = ({ title, description, imageUrl, onClick }) => (
+interface GalleryCardProps extends GalleryItem {
+  onClick: () => void;
+}
+
+const GalleryCard: React.FC<GalleryCardProps> = ({ title, description, imageUrl, onClick }) => (
   <motion.div
     whileHover={{ scale: 1.05 }}
     whileTap={{ scale: 0.95 }}

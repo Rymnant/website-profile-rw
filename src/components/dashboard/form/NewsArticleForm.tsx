@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { NewsArticle } from "@prisma/client"
-import { onSubmitNewsArticle } from "@/components/dashboard/handler/newsHandlers"
+import { onSubmitNewsArticle } from "@/components/dashboard/form/handler/handler"
 
 export function NewsArticleForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -14,8 +14,7 @@ export function NewsArticleForm() {
 
   const onSubmit = async (data: NewsArticle) => {
     setIsLoading(true)
-    const token = localStorage.getItem('token') || '';
-    await onSubmitNewsArticle(data, reset, setIsLoading, token)
+    await onSubmitNewsArticle(data, reset, setIsLoading)
   }
 
   return (

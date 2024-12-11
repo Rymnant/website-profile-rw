@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { UMKMItem, UMKM } from "@prisma/client"
-import { onSubmitUMKM, fetchUMKMItems } from "@/components/dashboard/handler/umkmHandlers"
+import { onSubmitUMKM, fetchUMKMItems } from "@/components/dashboard/form/handler/handler"
 
 export function UMKMForm() {
   const [isLoading, setIsLoading] = useState(false)

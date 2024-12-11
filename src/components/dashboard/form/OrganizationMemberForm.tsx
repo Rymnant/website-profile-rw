@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { OrganizationMember } from "@prisma/client"
-import { onSubmitOrganization } from "@/components/dashboard/handler/organizationHandler"
+import { onSubmitOrganization } from "@/components/dashboard/form/handler/handler"
 
 export function OrganizationMemberForm() {
   const [isLoading, setIsLoading] = useState(false)

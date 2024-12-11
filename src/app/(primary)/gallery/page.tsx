@@ -2,15 +2,15 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { fetchGalleryItems } from "@/lib/utils";
 import GalleryCard from "@/components/common/GalleryCard";
 import { Pagination } from "@/components/common/Pagination";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { fadeInUp, staggerChildren } from "@/lib/utils";
 import Image from 'next/image';
+import { GALLERY_ITEMS } from "@/lib/constants";
 
 export default function GalleryPage(){
-  const galleryItems = fetchGalleryItems();
+  const galleryItems = GALLERY_ITEMS;
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedItem, setSelectedItem] = useState<typeof galleryItems[0] | null>(null);

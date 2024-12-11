@@ -1,11 +1,15 @@
 import { NextRequest, NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
-import { join } from "path"
-import mime from "mime"
-import { stat, mkdir, writeFile, unlink } from "fs/promises"
+import { v2 as cloudinary } from 'cloudinary'
 
 const prisma = new PrismaClient()
 export const revalidate = 60
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME?.trim(),
+  api_key: process.env.CLOUDINARY_API_KEY?.trim(),
+  api_secret: process.env.CLOUDINARY_API_SECRET?.trim(),
+});
 
 export async function GET(){
   try {
@@ -24,14 +28,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   const image = formData.get("image") as File
 
   const buffer = Buffer.from(await image.arrayBuffer())
-  const relativeUploadDir = `/uploads/${new Date(Date.now())
-    .toLocaleDateString("id-ID", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit"
-    }).replace(/\//g, "-")}/organization`;
-
-  const uploadDir = join(process.cwd(), "public", relativeUploadDir);
+  const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`
+  const filename = `${image.name.replace(/\.[^/.]+$/, "")}-${uniqueSuffix}`
 
   try {
     const result = await prisma.organizationMember.create({
@@ -42,31 +40,21 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       },
     });
 
-    try {
-      await stat(uploadDir);
-    } catch (e: unknown) {
-      if (e instanceof Error && (e as NodeJS.ErrnoException).code === "ENOENT") {
-        await mkdir(uploadDir, { recursive: true });
-      } else {
-        console.error(
-          "Error while trying to create directory when uploading a file\n",
-          e
-        );
-        return NextResponse.json(
-          { error: "Something went wrong." },
-          { status: 500 }
-        );
-      }
-    }
+    const uploadResult = await new Promise<{ secure_url: string }>((resolve, reject) => {
+      const stream = cloudinary.uploader.upload_stream(
+        { public_id: `organization/${filename}`, resource_type: 'image' },
+        (error, result) => {
+          if (error) {
+            reject(error);
+          } else {
+            resolve(result as { secure_url: string });
+          }
+        }
+      );
+      stream.end(buffer);
+    });
 
-    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-    const filename = `${image.name.replace(
-      /\.[^/.]+$/,
-
-      ""
-    )}-${uniqueSuffix}.${mime.getExtension(image.type)}`;
-    await writeFile(`${uploadDir}/${filename}`, buffer);
-    const fileUrl = `${relativeUploadDir}/${filename}`;
+    const fileUrl = uploadResult.secure_url;
 
     await prisma.organizationMember.update({
       where: { id: result.id },
@@ -98,10 +86,12 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
     }
 
     if (organizationMember.image) {
-      const filePath = join(process.cwd(), "public", organizationMember.image);
-      await unlink(filePath).catch((err) => {
-        console.error("Failed to delete file:", err);
-      });
+      const publicId = organizationMember.image.split('/').pop()?.split('.')[0];
+      if (publicId) {
+        await cloudinary.uploader.destroy(`organization/${publicId}`).catch((err) => {
+          console.error("Failed to delete image from Cloudinary:", err);
+        });
+      }
     }
 
     await prisma.organizationMember.delete({ where: { id } });

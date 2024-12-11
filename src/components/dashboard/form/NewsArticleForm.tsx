@@ -7,6 +7,8 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { NewsArticle } from "@prisma/client"
 import { onSubmitNewsArticle } from "@/components/dashboard/form/handler/handler"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
 
 export function NewsArticleForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -18,15 +20,33 @@ export function NewsArticleForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mb-8">
-      <Input {...register("title")} placeholder="Title" required />
-      <Textarea {...register("description")} placeholder="Description" required />
-      <Input {...register("date")} type="date" required />
-      <Input type="file" {...register("image")} placeholder="Image" required />
-      <Button type="submit" disabled={isLoading}>
-        {isLoading ? "Creating..." : "Create News Article"}
-      </Button>
-    </form>
+    <Card>
+      <CardHeader>
+        <CardTitle>Create News Article</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="title">Title</Label>
+            <Input id="title" {...register("title")} placeholder="Enter article title" required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Textarea id="description" {...register("description")} placeholder="Enter article description" required className="min-h-[100px]" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="date">Date</Label>
+            <Input id="date" {...register("date")} type="date" required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="image">Image</Label>
+            <Input id="image" type="file" {...register("image")} required />
+          </div>
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? "Creating..." : "Create News Article"}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   )
 }
-

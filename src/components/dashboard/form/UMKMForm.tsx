@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { UMKMItem, UMKM } from "@prisma/client"
 import { onSubmitUMKM, fetchUMKMItems } from "@/components/dashboard/form/handler/handler"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
 
 export function UMKMForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -28,32 +30,57 @@ export function UMKMForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mb-8">
-      <Input {...register("label")} placeholder="Label" required />
-      <Input {...register("category")} placeholder="Category" required />
-      <Textarea {...register("description")} placeholder="Description" required />
-      <Input {...register("link")} placeholder="Link" />
-      <Input type="file" {...register("image")} placeholder="Image" required />
-      <Select 
-        onValueChange={(value) => setValue("umkmItemId", value)} 
-        value={watch("umkmItemId")}
-      >
-        <SelectTrigger>
-          <SelectValue placeholder="Select UMKM Item" />
-        </SelectTrigger>
-        <SelectContent>
-          {umkmItems.map((item) => (
-            <SelectItem key={item.id} value={item.id}>
-              {item.title}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-      <input type="hidden" {...register("umkmItemId")} />
-      <Button type="submit" disabled={isLoading}>
-        {isLoading ? "Creating..." : "Create UMKM"}
-      </Button>
-    </form>
+    <Card>
+      <CardHeader>
+        <CardTitle>Create UMKM</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="label">Label</Label>
+            <Input id="label" {...register("label")} placeholder="Label" required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="category">Category</Label>
+            <Input id="category" {...register("category")} placeholder="Category" required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="description">Description</Label>
+            <Textarea id="description" {...register("description")} placeholder="Description" required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="link">Link</Label>
+            <Input id="link" {...register("link")} placeholder="Link" />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="image">Image</Label>
+            <Input id="image" type="file" {...register("image")} required />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="umkmItem">UMKM Item</Label>
+            <Select 
+              onValueChange={(value) => setValue("umkmItemId", value)} 
+              value={watch("umkmItemId")}
+            >
+              <SelectTrigger id="umkmItem">
+                <SelectValue placeholder="Select UMKM Item" />
+              </SelectTrigger>
+              <SelectContent>
+                {umkmItems.map((item) => (
+                  <SelectItem key={item.id} value={item.id}>
+                    {item.title}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <input type="hidden" {...register("umkmItemId")} />
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? "Creating..." : "Create UMKM"}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   )
 }
 

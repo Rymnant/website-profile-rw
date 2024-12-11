@@ -6,6 +6,8 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { toast } from "@/hooks/use-toast"
 import { UMKMItem } from "@prisma/client"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Label } from "@/components/ui/label"
 
 export function UMKMItemForm() {
   const [isLoading, setIsLoading] = useState(false)
@@ -33,12 +35,22 @@ export function UMKMItemForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 mb-8">
-      <Input {...register("title")} placeholder="Title" required />
-      <Button type="submit" disabled={isLoading}>
-        {isLoading ? "Creating..." : "Create UMKM Item"}
-      </Button>
-    </form>
+    <Card>
+      <CardHeader>
+        <CardTitle>Create UMKM Item</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="title">Title</Label>
+            <Input id="title" {...register("title")} placeholder="Title" required />
+          </div>
+          <Button type="submit" className="w-full" disabled={isLoading}>
+            {isLoading ? "Creating..." : "Create UMKM Item"}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
   )
 }
 

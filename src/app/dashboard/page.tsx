@@ -26,7 +26,7 @@ const getModelName = (tab: string) => {
 }
 
 export default function Dashboard() {
-  const [activeTab, setActiveTab] = useState("news")
+  const [activeTab, setActiveTab] = useState("admins")
   const isLargeScreen = useMediaQuery({ minWidth: 1024 })
   const isMediumScreen = useMediaQuery({ minWidth: 768, maxWidth: 1023 })
 

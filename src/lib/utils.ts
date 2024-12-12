@@ -58,6 +58,30 @@ export async function deleteData(model: string, id: string) {
   }
 }
 
+// Edit data
+export async function editData(model: string, id: string, formData: FormData) {
+  try {
+    const response = await fetch(`/api/${model.toLowerCase()}/${id}`, {
+      method: 'PUT',
+      body: formData,
+    });
+    
+    const contentType = response.headers.get("content-type");
+    if (contentType && contentType.indexOf("application/json") !== -1) {
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || `Failed to edit ${model} data`);
+      }
+      return data;
+    } else {
+      throw new Error(`Unexpected response type: ${contentType}`);
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
 // Handle form submission
 export const handleFormSubmit = (values: FormValues) => {
   toast({

@@ -15,7 +15,8 @@ export async function GET() {
   try {
     const galleryItems = await prisma.gallery.findMany()
     return NextResponse.json(galleryItems)
-  } catch {
+  } catch (error) {
+    console.error("Failed to fetch gallery items:", error);
     return NextResponse.json({ error: "Failed to fetch gallery items" }, { status: 500 })
   }
 }
@@ -38,16 +39,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const filename = `${image.name.replace(/\.[^/.]+$/, "")}-${uniqueSuffix}`;
 
     try {
-      const result = await prisma.gallery.create({
-        data: {
-          title,
-          image: "",
-        },
-      });
-
       const uploadResult = await new Promise<{ secure_url: string }>((resolve, reject) => {
         const stream = cloudinary.uploader.upload_stream(
-          { public_id: `gallery/${filename}`, resource_type: 'image' },
+          { 
+            public_id: `gallery/${filename}`, 
+            resource_type: 'image',
+            overwrite: true // Ensure overwrite is set to true
+          },
           (error, result) => {
             if (error) {
               reject(error);
@@ -61,23 +59,25 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
       const fileUrl = uploadResult.secure_url;
 
-      await prisma.gallery.update({
-        where: { id: result.id },
-        data: { image: fileUrl },
+      const result = await prisma.gallery.create({
+        data: {
+          title,
+          image: fileUrl,
+        },
       });
 
       return NextResponse.json({ item: result });
     } catch (e: unknown) {
       console.error("Error while trying to upload a file\n", e);
       return NextResponse.json(
-        { error: "Something went wrong." },
+        { error: "Failed to create gallery item." },
         { status: 500 }
       );
     }
   } catch (e: unknown) {
     console.error("Error in POST handler\n", e);
     return NextResponse.json(
-      { error: "Something went wrong." },
+      { error: "Failed to create gallery item." },
       { status: 500 }
     );
   }
@@ -101,9 +101,18 @@ export async function DELETE(request: NextRequest): Promise<NextResponse> {
     if (galleryItem.image) {
       const publicId = galleryItem.image.split('/').pop()?.split('.')[0];
       if (publicId) {
-        await cloudinary.uploader.destroy(`gallery/${publicId}`).catch((err) => {
+        try {
+          const result = await cloudinary.uploader.destroy(`gallery/${publicId}`);
+          if (result.result !== 'ok') {
+            throw new Error('Failed to delete image from Cloudinary');
+          }
+        } catch (err) {
           console.error("Failed to delete image from Cloudinary:", err);
-        });
+          return NextResponse.json(
+            { error: "Failed to delete image from Cloudinary" },
+            { status: 500 }
+          );
+        }
       }
     }
 

@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from "next/server"
 import { PrismaClient } from "@prisma/client"
 
@@ -9,27 +8,59 @@ export async function GET() {
   try {
     const admins = await prisma.admin.findMany()
     return NextResponse.json(admins)
-  } catch {
-    return NextResponse.json({ error: "Failed to fetch Admins" }, { status: 500 })
+  } catch (error) {
+    console.error("Failed to fetch admins:", error);
+    return NextResponse.json({ error: "Failed to fetch admins" }, { status: 500 })
   }
 }
 
-export async function POST(request: NextRequest) {
+export async function POST(request: NextRequest): Promise<NextResponse> {
   try {
     const data = await request.json()
     const admin = await prisma.admin.create({ data })
     return NextResponse.json(admin)
-  } catch {
-    return NextResponse.json({ error: "Failed to create Admin" }, { status: 500 })
+  } catch (error) {
+    console.error("Failed to create admin:", error);
+    return NextResponse.json({ error: "Failed to create admin" }, { status: 500 })
   }
 }
 
-export async function DELETE(request: NextRequest) {
+export async function DELETE(request: NextRequest): Promise<NextResponse> {
   try {
     const { id } = await request.json()
-    await prisma.admin.delete({ where: { id } })
-    return NextResponse.json({ message: "Admin deleted successfully" })
+
+    const admin = await prisma.admin.findUnique({
+      where: { id },
+    });
+
+    if (!admin) {
+      return NextResponse.json(
+        { error: "Admin not found" },
+        { status: 404 }
+      );
+    }
+
+    await prisma.admin.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ message: "Admin deleted successfully" });
+  } catch (error) {
+    console.error("Failed to delete admin:", error);
+    return NextResponse.json(
+      { error: "Failed to delete admin" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(request: NextRequest) {
+  try {
+    const data = await request.json()
+    const { id, ...rest } = data
+    const admin = await prisma.admin.update({ where: { id }, data: rest })
+    return NextResponse.json(admin)
   } catch {
-    return NextResponse.json({ error: "Failed to delete Admin" }, { status: 500 })
+    return NextResponse.json({ error: "Failed to update Admin" }, { status: 500 })
   }
 }

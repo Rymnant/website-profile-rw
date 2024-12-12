@@ -26,6 +26,12 @@ export async function POST(request: NextRequest) {
 export async function DELETE(request: NextRequest) {
   try {
     const { id } = await request.json();
+    const umkmItem = await prisma.uMKMItem.findUnique({ where: { id } });
+
+    if (!umkmItem) {
+      return NextResponse.json({ error: "UMKM Item not found" }, { status: 404 });
+    }
+
     await prisma.uMKMItem.delete({ where: { id } });
     return NextResponse.json({ message: "UMKM Item deleted successfully" });
   } catch {

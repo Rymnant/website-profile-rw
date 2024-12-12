@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { OrganizationMember } from "@prisma/client"
-import { onSubmitOrganization } from "@/components/dashboard/Form/Handler/handler"
+import { onSubmitOrganization } from "@/components/dashboard/form/Handler/handler"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Label } from "@/components/ui/label"
 

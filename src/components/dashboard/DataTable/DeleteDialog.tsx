@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { AlertDialog, AlertDialogContent, AlertDialogHeader, AlertDialogTitle, AlertDialogDescription, AlertDialogFooter, AlertDialogCancel, AlertDialogAction } from "@/components/ui/alert-dialog"
 import { Loader2 } from 'lucide-react'
-import { deleteAdminData, deleteGalleryData, deleteNewsArticleData, deleteOrganizationMemberData, deleteUMKMData, deleteUMKMItemData } from "@/components/dashboard/Form/Handler/handler"
+import { deleteAdminData, deleteGalleryData, deleteNewsArticleData, deleteOrganizationMemberData, deleteUMKMData, deleteUMKMItemData } from "@/components/dashboard/form/Handler/handler"
 
 /*eslint-disable*/
 type DeleteDialogProps = {

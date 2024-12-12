@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Loader2 } from 'lucide-react'
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
-import { updateAdminData, updateGalleryData, updateNewsArticleData, updateOrganizationMemberData, updateUMKMData, updateUMKMItemData } from "@/components/dashboard/Form/Handler/handler"
+import { updateAdminData, updateGalleryData, updateNewsArticleData, updateOrganizationMemberData, updateUMKMData, updateUMKMItemData } from "@/components/dashboard/form/Handler/handler"
 
 /*eslint-disable*/
 type EditDialogProps = {

@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { Button } from "@/components/ui/button"
 import { RefreshCw, Loader2, FileX } from 'lucide-react'
-import { DataTableContent } from "@/components/dashboard/dataTable/DataTableContent"
+import { DataTableContent } from "@/components/dashboard/DataTable/DataTableContent"
 import { Skeleton } from "@/components/ui/skeleton"
 
 /*eslint-disable*/

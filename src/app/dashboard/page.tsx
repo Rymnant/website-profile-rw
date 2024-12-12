@@ -8,7 +8,7 @@ import { UMKMForm } from "@/components/dashboard/form/UMKM"
 import { UMKMItemForm } from "@/components/dashboard/form/UMKIMItem"
 import { AdminForm } from "@/components/dashboard/form/Admin"
 import { GalleryForm } from "@/components/dashboard/form/Gallery"
-import { DataTable } from "@/components/dashboard/dataTable/DataTable"
+import { DataTable } from "@/components/dashboard/DataTable/DataTable"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { useMediaQuery } from 'react-responsive'

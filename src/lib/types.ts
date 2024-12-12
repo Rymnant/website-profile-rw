@@ -1,4 +1,4 @@
-// Definition of types used in the website-profile-rw project
+/*eslint-disable*/ 
 
 // Define the navigation items
 export type NavItem = {
@@ -102,3 +102,6 @@ export interface PaginationProps {
 export interface FormValues {
   [key: string]: string | number | boolean;
 }
+
+// Data types
+export type DataItem = Record<string, any>;

@@ -21,46 +21,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json(admin)
   } catch (error) {
     console.error("Failed to create admin:", error);
-    return NextResponse.json({ error: "Failed to create admin" }, { status: 500 })
-  }
-}
-
-export async function DELETE(request: NextRequest): Promise<NextResponse> {
-  try {
-    const { id } = await request.json()
-
-    const admin = await prisma.admin.findUnique({
-      where: { id },
-    });
-
-    if (!admin) {
-      return NextResponse.json(
-        { error: "Admin not found" },
-        { status: 404 }
-      );
+    if (error instanceof SyntaxError) {
+      return NextResponse.json({ error: "Invalid JSON format" }, { status: 400 });
     }
-
-    await prisma.admin.delete({
-      where: { id },
-    });
-
-    return NextResponse.json({ message: "Admin deleted successfully" });
-  } catch (error) {
-    console.error("Failed to delete admin:", error);
-    return NextResponse.json(
-      { error: "Failed to delete admin" },
-      { status: 500 }
-    );
-  }
-}
-
-export async function PUT(request: NextRequest) {
-  try {
-    const data = await request.json()
-    const { id, ...rest } = data
-    const admin = await prisma.admin.update({ where: { id }, data: rest })
-    return NextResponse.json(admin)
-  } catch {
-    return NextResponse.json({ error: "Failed to update Admin" }, { status: 500 })
+    return NextResponse.json({ error: "Failed to create admin" }, { status: 500 })
   }
 }

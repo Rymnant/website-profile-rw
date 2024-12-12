@@ -33,24 +33,15 @@ export async function PUT(
     let fileUrl = galleryItem.image;
 
     if (image && image instanceof File) {
-      if (galleryItem.image) {
-        const publicId = galleryItem.image.split('/').pop()?.split('.')[0];
-        if (publicId) {
-          await cloudinary.uploader.destroy(`gallery/${publicId}`).catch((err) => {
-            console.error("Failed to delete old image from Cloudinary:", err);
-          });
-        }
-      }
+      const publicId = galleryItem.image.split('/').pop()?.split('.')[0];
 
       const buffer = Buffer.from(await image.arrayBuffer());
-      const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
-      const filename = `${image.name.replace(/\.[^/.]+$/, "")}-${uniqueSuffix}`;
 
       try {
         const uploadResult = await new Promise<{ secure_url: string }>((resolve, reject) => {
           const stream = cloudinary.uploader.upload_stream(
             { 
-              public_id: `gallery/${filename}`, 
+              public_id: `gallery/${publicId}`, 
               resource_type: 'image',
               overwrite: true
             },
@@ -87,5 +78,59 @@ export async function PUT(
   } catch (e: unknown) {
     console.error("Error while trying to edit gallery item\n", e);
     return NextResponse.json({ error: "Failed to update gallery item." }, { status: 500 });
+  }
+}
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  try {
+    const { id } = await params;
+
+    const galleryItem = await prisma.gallery.findUnique({
+      where: { id },
+    });
+
+    if (!galleryItem) {
+      return NextResponse.json(
+        { error: "Gallery item not found" },
+        { status: 404 }
+      );
+    }
+
+    const imageUrl = galleryItem.image;
+
+    if (galleryItem.image) {
+      const publicId = galleryItem.image.split('/').pop()?.split('.')[0];
+      if (publicId) {
+        try {
+          console.log(`Attempting to delete image with publicId: gallery/${publicId}`);
+          const result = await cloudinary.uploader.destroy(`gallery/${publicId}`);
+          console.log(`Cloudinary deletion result: ${JSON.stringify(result)}`);
+          if (result.result !== 'ok' && result.result !== 'not found') {
+            throw new Error('Failed to delete image from Cloudinary');
+          }
+        } catch (err) {
+          console.error("Failed to delete image from Cloudinary:", err);
+          return NextResponse.json(
+            { error: "Failed to delete image from Cloudinary" },
+            { status: 500 }
+          );
+        }
+      }
+    }
+
+    await prisma.gallery.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ message: "Item deleted successfully", imageUrl });
+  } catch (error) {
+    console.error("Failed to delete item:", error);
+    return NextResponse.json(
+      { error: "Failed to delete item" },
+      { status: 500 }
+    );
   }
 }

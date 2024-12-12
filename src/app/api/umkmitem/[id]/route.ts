@@ -32,3 +32,19 @@ export async function PUT(
     return NextResponse.json({ error: "Failed to update UMKM item." }, { status: 500 });
   }
 }
+
+export async function DELETE(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
+  try {
+    const { id } = await params;
+    const umkmItem = await prisma.uMKMItem.findUnique({ where: { id } });
+
+    if (!umkmItem) {
+      return NextResponse.json({ error: "UMKM Item not found" }, { status: 404 });
+    }
+
+    await prisma.uMKMItem.delete({ where: { id } });
+    return NextResponse.json({ message: "UMKM Item deleted successfully" });
+  } catch {
+    return NextResponse.json({ error: "Failed to delete UMKM Item" }, { status: 500 });
+  }
+}

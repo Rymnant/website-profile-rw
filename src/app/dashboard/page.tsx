@@ -2,13 +2,13 @@
 
 import { useState } from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { NewsArticleForm } from "@/components/dashboard/form/NewsArticleForm"
-import { OrganizationMemberForm } from "@/components/dashboard/form/OrganizationMemberForm"
-import { UMKMForm } from "@/components/dashboard/form/UMKMForm"
-import { UMKMItemForm } from "@/components/dashboard/form/UMKMItemForm"
-import { AdminForm } from "@/components/dashboard/form/AdminForm"
-import { GalleryForm } from "@/components/dashboard/form/GalleryForm"
-import { DataTable } from "@/components/dashboard/DataTable"
+import { NewsArticleForm } from "@/components/dashboard/Form/NewsArticleForm"
+import { OrganizationMemberForm } from "@/components/dashboard/Form/OrganizationMemberForm"
+import { UMKMForm } from "@/components/dashboard/Form/UMKMForm"
+import { UMKMItemForm } from "@/components/dashboard/Form/UMKMItemForm"
+import { AdminForm } from "@/components/dashboard/Form/AdminForm"
+import { GalleryForm } from "@/components/dashboard/Form/GalleryForm"
+import { DataTable } from "@/components/dashboard/DataTable/DataTable"
 import { Card, CardContent } from "@/components/ui/card"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { useMediaQuery } from 'react-responsive'
@@ -58,7 +58,9 @@ export default function Dashboard() {
                     {tab === "gallery" && <GalleryForm />}
                   </div>
                   <div className="space-y-4 sm:space-y-6">
-                    <DataTable model={getModelName(tab)} />
+                    <DataTable 
+                      model={getModelName(tab)} 
+                    />
                   </div>
                 </div>
               </TabsContent>

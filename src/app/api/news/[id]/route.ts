@@ -89,3 +89,53 @@ export async function PUT(
     return NextResponse.json({ error: "Failed to update news article." }, { status: 500 });
   }
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  try {
+    const { id } = await params;
+
+    const newsArticle = await prisma.newsArticle.findUnique({
+      where: { id },
+    });
+
+    if (!newsArticle) {
+      return NextResponse.json(
+        { error: "News article not found" },
+        { status: 404 }
+      );
+    }
+
+    if (newsArticle.image) {
+      const publicId = newsArticle.image.split('/').pop()?.split('.')[0];
+      if (publicId) {
+        try {
+          const result = await cloudinary.uploader.destroy(`news/${publicId}`);
+          if (result.result !== 'ok') {
+            throw new Error('Failed to delete image from Cloudinary');
+          }
+        } catch (err) {
+          console.error("Failed to delete image from Cloudinary:", err);
+          return NextResponse.json(
+            { error: "Failed to delete image from Cloudinary" },
+            { status: 500 }
+          );
+        }
+      }
+    }
+
+    await prisma.newsArticle.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ message: "Article deleted successfully" });
+  } catch (error) {
+    console.error("Failed to delete article:", error);
+    return NextResponse.json(
+      { error: "Failed to delete article" },
+      { status: 500 }
+    );
+  }
+}

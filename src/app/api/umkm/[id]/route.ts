@@ -95,3 +95,42 @@ export async function PUT(
     return NextResponse.json({ error: "Failed to update UMKM item." }, { status: 500 });
   }
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  try {
+    const { id } = await params;
+
+    const umkm = await prisma.uMKM.findUnique({ where: { id } });
+
+    if (!umkm) {
+      return NextResponse.json({ error: "UMKM item not found" }, { status: 404 });
+    }
+
+    if (umkm.image) {
+      const publicId = umkm.image.split('/').pop()?.split('.')[0];
+      if (publicId) {
+        try {
+          const result = await cloudinary.uploader.destroy(`umkm/${publicId}`);
+          if (result.result !== 'ok') {
+            throw new Error('Failed to delete image from Cloudinary');
+          }
+        } catch (err) {
+          console.error("Failed to delete image from Cloudinary:", err);
+          return NextResponse.json(
+            { error: "Failed to delete image from Cloudinary" },
+            { status: 500 }
+          );
+        }
+      }
+    }
+
+    await prisma.uMKM.delete({ where: { id } });
+    return NextResponse.json({ umkm });
+  } catch (e: unknown) {
+    console.error("Error while trying to delete a UMKM item\n", e);
+    return NextResponse.json({ error: "Something went wrong." }, { status: 500 });
+  }
+}

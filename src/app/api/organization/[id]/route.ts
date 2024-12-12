@@ -91,3 +91,53 @@ export async function PUT(
     return NextResponse.json({ error: "Failed to update organization member." }, { status: 500 });
   }
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
+): Promise<NextResponse> {
+  try {
+    const { id } = await params;
+
+    const organizationMember = await prisma.organizationMember.findUnique({
+      where: { id },
+    });
+
+    if (!organizationMember) {
+      return NextResponse.json(
+        { error: "Organization member not found" },
+        { status: 404 }
+      );
+    }
+
+    if (organizationMember.image) {
+      const publicId = organizationMember.image.split('/').pop()?.split('.')[0];
+      if (publicId) {
+        try {
+          const result = await cloudinary.uploader.destroy(`organization/${publicId}`);
+          if (result.result !== 'ok') {
+            throw new Error('Failed to delete image from Cloudinary');
+          }
+        } catch (err) {
+          console.error("Failed to delete image from Cloudinary:", err);
+          return NextResponse.json(
+            { error: "Failed to delete image from Cloudinary" },
+            { status: 500 }
+          );
+        }
+      }
+    }
+
+    await prisma.organizationMember.delete({
+      where: { id },
+    });
+
+    return NextResponse.json({ message: "Organization member deleted successfully" });
+  } catch (error) {
+    console.error("Failed to delete organization member:", error);
+    return NextResponse.json(
+      { error: "Failed to delete organization member" },
+      { status: 500 }
+    );
+  }
+}

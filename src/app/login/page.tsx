@@ -1,6 +1,5 @@
 'use client'
 
-/*eslint-disable*/
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
@@ -12,7 +11,6 @@ import { useToast } from "@/hooks/use-toast"
 
 export default function Login() {
   const [password, setPassword] = useState("")
-  const [error, setError] = useState("")
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
   const { toast } = useToast()
@@ -20,27 +18,27 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
-    setError("")
 
     try {
-      if (password === process.env.NEXT_PUBLIC_DEV_SECRET_KEY) {
-        document.cookie = `dev-token=${password}; path=/; max-age=3600; SameSite=Strict; Secure`; // Token valid for 1 hour, with improved security
+      const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ password }),
+      });
+      
+      if (response.ok) {
         router.push('/dashboard')
       } else {
-        setError('Incorrect password')
-        toast({
-          variant: "destructive",
-          title: "Error",
-          description: "Incorrect password. Please try again.",
-        })
+        throw new Error('Login failed')
       }
     } catch (error) {
       console.error('Login error:', error);
-      setError('An error occurred. Please try again.')
       toast({
         variant: "destructive",
         title: "Error",
-        description: "An error occurred. Please try again.",
+        description: "Login failed. Please try again.",
       })
     } finally {
       setIsLoading(false)

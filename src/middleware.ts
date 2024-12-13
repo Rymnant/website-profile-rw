@@ -18,12 +18,12 @@ export function middleware(request: NextRequest) {
         console.log('secret', secret);
     }
 
-    if (url.pathname === '/dashboard/login') {
-        if (token === secret) {
-            url.pathname = "/dashboard";
-            return NextResponse.redirect(url);
-        }
-        return NextResponse.next();
+    // Ensure secret and token are defined
+    if (!secret || !token) {
+        return new NextResponse(
+            JSON.stringify({ message: "Environment variables or token missing" }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
     }
 
     if (url.pathname.startsWith('/dashboard')) {

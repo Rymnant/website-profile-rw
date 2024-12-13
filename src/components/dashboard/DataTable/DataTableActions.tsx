@@ -3,8 +3,10 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Edit3, Trash2 } from 'lucide-react'
-import { EditDialog } from "./EditDialog"
-import { DeleteDialog } from "./DeleteDialog"
+import { EditDialogWithImage } from "./EditDialogWithImage"
+import { EditDialogWithoutImage } from "./EditDialogWithoutImage"
+import { DeleteDialogWithImage } from "./DeleteDialogWithImage"
+import { DeleteDialogWithoutImage } from "./DeleteDialogWithoutImage"
 
 /*eslint-disable*/
 type DataTableActionsProps = {
@@ -19,6 +21,8 @@ export function DataTableActions({ row, model, columns, onDataChange, prevData }
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
 
+  const hasImageField = ['gallery', 'news', 'organization', 'umkm'].includes(model.toLowerCase());
+
   return (
     <>
       <Button variant="outline" size="sm" onClick={() => setIsEditDialogOpen(true)}>
@@ -28,24 +32,47 @@ export function DataTableActions({ row, model, columns, onDataChange, prevData }
         <Trash2 className="h-4 w-4" />
       </Button>
 
-      <EditDialog 
-        isOpen={isEditDialogOpen}
-        onOpenChange={setIsEditDialogOpen}
-        row={row}
-        model={model}
-        columns={columns}
-        onDataChange={onDataChange}
-        prevData={prevData}
-      />
-
-      <DeleteDialog 
-        isOpen={isDeleteDialogOpen}
-        onOpenChange={setIsDeleteDialogOpen}
-        row={row}
-        model={model}
-        onDataChange={onDataChange}
-        prevData={prevData}
-      />
+      {hasImageField ? (
+        <>
+          <EditDialogWithImage 
+            isOpen={isEditDialogOpen}
+            onOpenChange={setIsEditDialogOpen}
+            row={row}
+            model={model}
+            columns={columns}
+            onDataChange={onDataChange}
+            prevData={prevData}
+          />
+          <DeleteDialogWithImage 
+            isOpen={isDeleteDialogOpen}
+            onOpenChange={setIsDeleteDialogOpen}
+            row={row}
+            model={model}
+            onDataChange={onDataChange}
+            prevData={prevData}
+          />
+        </>
+      ) : (
+        <>
+          <EditDialogWithoutImage 
+            isOpen={isEditDialogOpen}
+            onOpenChange={setIsEditDialogOpen}
+            row={row}
+            model={model}
+            columns={columns}
+            onDataChange={onDataChange}
+            prevData={prevData}
+          />
+          <DeleteDialogWithoutImage 
+            isOpen={isDeleteDialogOpen}
+            onOpenChange={setIsDeleteDialogOpen}
+            row={row}
+            model={model}
+            onDataChange={onDataChange}
+            prevData={prevData}
+          />
+        </>
+      )}
     </>
   )
 }

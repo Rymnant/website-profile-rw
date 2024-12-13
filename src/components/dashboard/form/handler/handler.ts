@@ -39,6 +39,10 @@ export async function updateAdminData(id: string, data: Admin) {
       throw new Error(errorData.error || `Failed to update admin data`);
     }
 
+    if (response.headers.get('Content-Length') === '0') {
+      return {};
+    }
+
     return await response.json();
   } catch (error) {
     handleError(error, `update admin data`);
@@ -61,7 +65,13 @@ export async function deleteAdminData(id: string) {
       throw new Error(errorData.error || `Failed to delete admin data`);
     }
 
-    return await response.json();
+    if (response.headers.get('Content-Length') === '0') {
+      return {};
+    }
+
+    const data = await response.json();
+    console.log(`Delete response data: ${JSON.stringify(data)}`);
+    return data;
   } catch (error) {
     handleError(error, `delete admin data`);
   }
@@ -81,66 +91,21 @@ export async function deleteGalleryData(id: string) {
       throw new Error(errorData.error || `Failed to delete gallery data`);
     }
 
+    if (response.headers.get('Content-Length') === '0') {
+      return {};
+    }
+
     const data = await response.json();
     console.log(`Delete response data: ${JSON.stringify(data)}`);
+    return data;
   } catch (error) {
     handleError(error, `delete gallery data`);
   }
 }
 
-async function uploadImageToServer(file: File, folder: string): Promise<string> {
-  const formData = new FormData();
-  formData.append('file', file);
-  formData.append('folder', folder);
-
-  const response = await fetch('/api/upload', {
-    method: 'POST',
-    body: formData,
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to upload image');
-  }
-
-  const data = await response.json();
-  return data.url;
-}
-
-async function deleteImageFromServer(publicId: string, folder: string): Promise<void> {
-  const response = await fetch('/api/upload', {
-    method: 'DELETE',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ publicId, folder }),
-  });
-
-  if (!response.ok) {
-    throw new Error('Failed to delete image');
-  }
-}
-
-// Generic function to handle image updates
+// Modifikasi fungsi handleImageUpdate
 async function handleImageUpdate(id: string, formData: FormData, model: string, folder: string) {
   try {
-    const response = await fetch(`/api/${model}/${id}`);
-    const item = await response.json();
-
-    let fileUrl = item.image;
-    const image = formData.get("image") as File | null;
-
-    if (image && image instanceof File) {
-      if (item.image) {
-        const publicId = item.image.split('/').pop()?.split('.')[0];
-        if (publicId) {
-          await deleteImageFromServer(publicId, folder);
-        }
-      }
-      fileUrl = await uploadImageToServer(image, folder);
-    }
-
-    formData.set("image", fileUrl);
-
     const updateResponse = await fetch(`/api/${model}/${id}`, {
       method: 'PUT',
       body: formData,
@@ -150,6 +115,10 @@ async function handleImageUpdate(id: string, formData: FormData, model: string, 
       const errorData = await updateResponse.json().catch(() => ({ error: 'Failed to update data' }));
       console.error(`Failed to update ${model} data. Status: ${updateResponse.status}, Body: ${JSON.stringify(errorData)}`);
       throw new Error(errorData.error || `Failed to update ${model} data`);
+    }
+
+    if (updateResponse.headers.get('Content-Length') === '0') {
+      return {};
     }
 
     return await updateResponse.json();
@@ -194,7 +163,13 @@ export async function deleteNewsArticleData(id: string) {
       throw new Error(errorData.error || `Failed to delete news article data`);
     }
 
-    return await response.json();
+    if (response.headers.get('Content-Length') === '0') {
+      return {};
+    }
+
+    const data = await response.json();
+    console.log(`Delete response data: ${JSON.stringify(data)}`);
+    return data;
   } catch (error) {
     handleError(error, `delete news article data`);
   }
@@ -216,7 +191,13 @@ export async function deleteOrganizationMemberData(id: string) {
       throw new Error(errorData.error || `Failed to delete organization member data`);
     }
 
-    return await response.json();
+    if (response.headers.get('Content-Length') === '0') {
+      return {};
+    }
+
+    const data = await response.json();
+    console.log(`Delete response data: ${JSON.stringify(data)}`);
+    return data;
   } catch (error) {
     handleError(error, `delete organization member data`);
   }
@@ -238,7 +219,13 @@ export async function deleteUMKMData(id: string) {
       throw new Error(errorData.error || `Failed to delete UMKM data`);
     }
 
-    return await response.json();
+    if (response.headers.get('Content-Length') === '0') {
+      return {};
+    }
+
+    const data = await response.json();
+    console.log(`Delete response data: ${JSON.stringify(data)}`);
+    return data;
   } catch (error) {
     handleError(error, `delete UMKM data`);
   }
@@ -283,7 +270,13 @@ export async function deleteUMKMItemData(id: string) {
       throw new Error(errorData.error || `Failed to delete UMKM item data`);
     }
 
-    return await response.json();
+    if (response.headers.get('Content-Length') === '0') {
+      return {};
+    }
+
+    const data = await response.json();
+    console.log(`Delete response data: ${JSON.stringify(data)}`);
+    return data;
   } catch (error) {
     handleError(error, `delete UMKM item data`);
   }

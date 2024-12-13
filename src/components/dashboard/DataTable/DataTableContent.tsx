@@ -54,7 +54,7 @@ export function DataTableContent({ data, columns, isLoading, model, onDataChange
             </TableRow>
           ) : (
             data.map((row, index) => (
-              <TableRow key={row.id || index}>
+              <TableRow key={row.id !== undefined ? row.id : index}>
                 {columns.map((column) => (
                   <TableCell key={column} className="truncate max-w-[150px]">
                     {renderCellContent(row, column)}

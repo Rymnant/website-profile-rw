@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button"
 import { Loader2 } from 'lucide-react'
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
-import { updateAdminData, updateGalleryData, updateNewsArticleData, updateOrganizationMemberData, updateUMKMData, updateUMKMItemData } from "@/components/dashboard/form/handler/handler"
+import { updateAdminData, updateUMKMItemData } from "@/components/dashboard/form/handler/handler"
 
 /*eslint-disable*/
-type EditDialogProps = {
+type EditDialogWithoutImageProps = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   row: any;
@@ -23,14 +23,10 @@ type EditDialogProps = {
 
 const updateMethods: { [key: string]: Function } = {
   admin: updateAdminData,
-  gallery: updateGalleryData,
-  news: updateNewsArticleData,
-  organization: updateOrganizationMemberData,
-  umkm: updateUMKMData,
   umkmitem: updateUMKMItemData,
 };
 
-export function EditDialog({ isOpen, onOpenChange, row = {}, model, columns, onDataChange, prevData }: EditDialogProps) {
+export function EditDialogWithoutImage({ isOpen, onOpenChange, row = {}, model, columns, onDataChange, prevData }: EditDialogWithoutImageProps) {
   const [isEditing, setIsEditing] = useState(false)
 
   const handleEdit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,18 +34,14 @@ export function EditDialog({ isOpen, onOpenChange, row = {}, model, columns, onD
     setIsEditing(true);
     try {
       const formData = new FormData(e.currentTarget);
-
-      // Handle file input separately
-      const fileInput = e.currentTarget.querySelector('input[type="file"]') as HTMLInputElement;
-      if (fileInput && fileInput.files && fileInput.files.length > 0) {
-        formData.set('image', fileInput.files[0]);
-      } else {
-        formData.delete('image');
-      }
+      const data: any = {};
+      formData.forEach((value, key) => {
+        data[key] = value;
+      });
 
       const updateMethod = updateMethods[model.toLowerCase()];
       if (updateMethod && row.id) {
-        const result = await updateMethod(row.id, formData);
+        const result = await updateMethod(row.id, data);
         if (prevData) {
           const updatedData = prevData.map((item: any) => item.id === row.id ? result : item);
           onDataChange(updatedData);
@@ -64,23 +56,6 @@ export function EditDialog({ isOpen, onOpenChange, row = {}, model, columns, onD
   };
 
   const renderInputField = (column: string, value: any) => {
-    if (column === 'image') {
-      return (
-        <Input
-          id={column}
-          name={column}
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            const file = e.target.files?.[0]
-            if (file) {
-              console.log('File selected:', file.name)
-            }
-          }}
-        />
-      )
-    }
-
     if (typeof value === 'boolean') {
       return (
         <Switch

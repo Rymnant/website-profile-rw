@@ -8,10 +8,10 @@ import { Button } from "@/components/ui/button"
 import { Loader2 } from 'lucide-react'
 import { Textarea } from "@/components/ui/textarea"
 import { Switch } from "@/components/ui/switch"
-import { updateAdminData, updateGalleryData, updateNewsArticleData, updateOrganizationMemberData, updateUMKMData, updateUMKMItemData } from "@/components/dashboard/form/handler/handler"
+import { updateGalleryData, updateNewsArticleData, updateOrganizationMemberData, updateUMKMData } from "@/components/dashboard/form/handler/handler"
 
 /*eslint-disable*/
-type EditDialogProps = {
+type EditDialogWithImageProps = {
   isOpen: boolean;
   onOpenChange: (open: boolean) => void;
   row: any;
@@ -22,15 +22,13 @@ type EditDialogProps = {
 }
 
 const updateMethods: { [key: string]: Function } = {
-  admin: updateAdminData,
   gallery: updateGalleryData,
   news: updateNewsArticleData,
   organization: updateOrganizationMemberData,
   umkm: updateUMKMData,
-  umkmitem: updateUMKMItemData,
 };
 
-export function EditDialog({ isOpen, onOpenChange, row = {}, model, columns, onDataChange, prevData }: EditDialogProps) {
+export function EditDialogWithImage({ isOpen, onOpenChange, row = {}, model, columns, onDataChange, prevData }: EditDialogWithImageProps) {
   const [isEditing, setIsEditing] = useState(false)
 
   const handleEdit = async (e: React.FormEvent<HTMLFormElement>) => {

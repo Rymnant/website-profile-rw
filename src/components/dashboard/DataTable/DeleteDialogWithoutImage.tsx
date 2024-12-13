@@ -30,8 +30,8 @@ export function DeleteDialogWithoutImage({ isOpen, onOpenChange, row, model, onD
       if (deleteMethod) {
         await deleteMethod(row.id);
         const updatedData = prevData?.filter(item => item.id !== row.id);
-        onDataChange(updatedData)
-        onOpenChange(false)
+        onOpenChange(false);
+        onDataChange(updatedData); // Refresh table content
       }
     } catch (error) {
       console.error("Error in handleDelete:", error);

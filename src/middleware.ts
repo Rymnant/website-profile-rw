@@ -10,6 +10,12 @@ export function middleware(request: NextRequest) {
 
     const url = request.nextUrl.clone();
     const secret = process.env.NEXT_PUBLIC_DEV_SECRET_KEY;
+    if (!secret) {
+        return new NextResponse(
+            JSON.stringify({ message: "Environment variable NEXT_PUBLIC_DEV_SECRET_KEY is missing" }),
+            { status: 500, headers: { 'Content-Type': 'application/json' } }
+        );
+    }
     const token = request.cookies.get('dev-token')?.value;
 
     // Remove console logs in production

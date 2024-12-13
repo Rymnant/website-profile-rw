@@ -1,5 +1,6 @@
 import './globals.css'
 import ThemeWrapper from '@/components/layout/theme-wrapper'
+import { Toaster } from "@/components/ui/toaster"
 
 export const metadata = {
   title: 'Website RW 06 Rejowinangun',
@@ -16,6 +17,7 @@ export default function RootLayout({
       <body className="min-h-screen dark:bg-gray-950">
         <ThemeWrapper>
           {children}
+          <Toaster />
         </ThemeWrapper>
       </body>
     </html>
